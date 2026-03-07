@@ -22,6 +22,14 @@ This project sends registration form data to:
 Set this in `.env` (optional, already in `.env.example`):
 - `VITE_GOOGLE_SCRIPT_URL=...`
 
+## Important for Sheets writes
+1. In your Google Sheet, sheet tab name must be exactly: `registrations`.
+2. Paste `google-apps-script/Code.gs` into Apps Script editor.
+3. Deploy as Web App:
+   - Execute as: `Me`
+   - Who has access: `Anyone`
+4. After code changes, click `Deploy > Manage deployments > Edit > Deploy` again.
+
 ## Run locally
 1. `npm install`
 2. `npm run dev`

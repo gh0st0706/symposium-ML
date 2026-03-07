@@ -46,17 +46,23 @@ function Register() {
       email: formData.email.trim(),
       phone: formData.phoneNumber.trim(),
       eventSelected: formData.eventSelected,
-      paymentStatus: formData.paymentStatus
+      paymentStatus: formData.paymentStatus,
+      submittedAt: new Date().toISOString()
     };
 
     try {
+      const body = new URLSearchParams({
+        payload: JSON.stringify(payload),
+        ...payload
+      });
+
       await fetch(GOOGLE_SCRIPT_URL, {
         method: "POST",
         mode: "no-cors",
         headers: {
-          "Content-Type": "text/plain;charset=utf-8"
+          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
         },
-        body: JSON.stringify(payload)
+        body: body.toString()
       });
 
       setStatusType("success");
