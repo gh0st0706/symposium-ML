@@ -13,6 +13,24 @@ Simple React + Google Apps Script registration system.
 4. `npm run dev`
 5. Open `http://localhost:5173`
 
+### Build for production
+1. `npm run build`
+2. Output folder: `dist/`
+
+## Vercel deployment (recommended)
+1. Push this repo to GitHub.
+2. In Vercel, click `Add New > Project` and import this repository.
+3. Framework preset: `Vite` (auto-detected).
+4. Build command: `npm run build`
+5. Output directory: `dist`
+6. In `Settings > Environment Variables`, add:
+   - `VITE_GOOGLE_SCRIPT_URL=YOUR_WEB_APP_EXEC_URL`
+7. Deploy.
+
+This repo includes:
+- `vercel.json` for SPA routing (`/register`, `/success` work on refresh/deep-link).
+- `.vercelignore` to keep deployment package clean.
+
 ### Routes
 - `/` Home page
 - `/register` Registration form
@@ -40,6 +58,12 @@ Simple React + Google Apps Script registration system.
 
 ## 5) Form submission flow
 Home (`/`) -> Register (`/register`) -> POST to Apps Script -> row appended in Google Sheet -> redirect to `/success`.
+
+## Run with Streamlit (Python-only)
+1. `pip install -r requirements-streamlit.txt`
+2. Optional env var:
+   - PowerShell: `$env:GOOGLE_SCRIPT_URL=\"YOUR_WEB_APP_EXEC_URL\"`
+3. `streamlit run streamlit_app.py`
 
 ## Project structure
 - `src/components/Navbar.jsx`

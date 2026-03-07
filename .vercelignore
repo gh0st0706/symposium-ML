@@ -1,0 +1,8 @@
+node_modules
+src/.venv
+src/backend
+google-apps-script
+streamlit_app.py
+requirements-streamlit.txt
+script.js
+style.css
