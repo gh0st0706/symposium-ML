@@ -9,10 +9,18 @@ Premium React + Tailwind + Framer Motion frontend for:
 - Tailwind CSS
 - Framer Motion
 - React Router
+- Google Apps Script + Google Sheets (registrations)
 
 ## Routes
 - `/` Home
 - `/register` Register
+
+## Google Sheets registration endpoint
+This project sends registration form data to:
+`https://script.google.com/macros/s/AKfycbxmWwxZoreYhgcEG5JhQcridAKwCWYzWrY97PEDqHdMgnuTO5-YVkzKDrOVZ-thl0Tl/exec`
+
+Set this in `.env` (optional, already in `.env.example`):
+- `VITE_GOOGLE_SCRIPT_URL=...`
 
 ## Run locally
 1. `npm install`
