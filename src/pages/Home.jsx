@@ -1,20 +1,20 @@
-import { Link } from "react-router-dom";
+import Hero from "../components/Hero";
+import About from "../sections/About";
+import Events from "../sections/Events";
+import Schedule from "../sections/Schedule";
+import RegisterCTA from "../sections/RegisterCTA";
+import Contact from "../sections/Contact";
 
 function Home() {
   return (
-    <section className="hero container">
-      <div className="card">
-        <h2>CSI College of Engineering</h2>
-        <p>Department: CSE - Artificial Intelligence and Machine Learning</p>
-        <p>
-          Join us for a one-day symposium with technical events, innovation talks,
-          and hands-on learning sessions.
-        </p>
-        <Link to="/register" className="btn btn-primary cta-btn">
-          Register
-        </Link>
-      </div>
-    </section>
+    <>
+      <Hero />
+      <About />
+      <Events />
+      <Schedule />
+      <RegisterCTA />
+      <Contact />
+    </>
   );
 }
 

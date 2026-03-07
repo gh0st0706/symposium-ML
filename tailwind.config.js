@@ -1,0 +1,28 @@
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: ["./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {
+      colors: {
+        ink: "#050816",
+        navy: "#081327",
+        cyan: "#22d3ee",
+        electric: "#3b82f6",
+        violet: "#8b5cf6"
+      },
+      fontFamily: {
+        sans: ["Inter", "Segoe UI", "sans-serif"],
+        display: ["Sora", "Inter", "sans-serif"]
+      },
+      boxShadow: {
+        glow: "0 0 0 1px rgba(34,211,238,0.3), 0 18px 45px rgba(6, 26, 55, 0.55)",
+        card: "0 14px 34px rgba(0, 0, 0, 0.45)"
+      },
+      backgroundImage: {
+        "hero-grid": "linear-gradient(rgba(148,163,184,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.09) 1px, transparent 1px)",
+        "premium-gradient": "linear-gradient(120deg,#22d3ee 0%,#3b82f6 50%,#8b5cf6 100%)"
+      }
+    }
+  },
+  plugins: []
+};
