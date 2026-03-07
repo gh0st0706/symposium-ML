@@ -22,6 +22,13 @@ This project sends registration form data to:
 Set this in `.env` (optional, already in `.env.example`):
 - `VITE_GOOGLE_SCRIPT_URL=...`
 
+## Registration workaround (recommended)
+This project now uses a Vercel serverless proxy:
+- `POST /api/register` -> forwards payload to Apps Script -> returns real success/failure.
+
+For production on Vercel, add environment variable:
+- `GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/.../exec`
+
 ## Important for Sheets writes
 1. In your Google Sheet, sheet tab name must be exactly: `registrations`.
 2. Paste `google-apps-script/Code.gs` into Apps Script editor.

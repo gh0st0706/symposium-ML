@@ -1,9 +1,9 @@
-const SPREADSHEET_ID = "PASTE_YOUR_SHEET_ID_HERE";
+const SPREADSHEET_ID = "17YH1AbpkKnbjUzbd9Vk0bVbBXDPk_4vjE1UK3TWRLSkrLPVCsUbYAu8";
 const SHEET_NAME = "registrations";
 
 function doPost(e) {
   try {
-    const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+    const sheet = getSheet_();
     if (!sheet) {
       return jsonResponse({ success: false, message: "Sheet not found" }, 400);
     }
@@ -33,10 +33,72 @@ function doPost(e) {
 }
 
 function doGet(e) {
+  if (e && e.parameter && e.parameter.action === "diag") {
+    try {
+      const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+      const sheet = ss.getSheetByName(SHEET_NAME);
+      return jsonResponse(
+        {
+          success: true,
+          message: "Diagnostics ok",
+          spreadsheetId: SPREADSHEET_ID,
+          spreadsheetName: ss.getName(),
+          sheetName: SHEET_NAME,
+          sheetFound: Boolean(sheet),
+          idLength: SPREADSHEET_ID.length,
+        },
+        200
+      );
+    } catch (error) {
+      return jsonResponse(
+        {
+          success: false,
+          message: "Diagnostics failed",
+          error: String(error),
+          spreadsheetId: SPREADSHEET_ID,
+          idLength: SPREADSHEET_ID.length,
+        },
+        500
+      );
+    }
+  }
+
+  if (e && e.parameter && e.parameter.action === "testWrite") {
+    try {
+      const sheet = getSheet_();
+      if (!sheet) {
+        return jsonResponse({ success: false, message: "Sheet not found" }, 400);
+      }
+      sheet.appendRow([
+        new Date(),
+        "TEST ENTRY",
+        "CSI College of Engineering",
+        "CSE - Artificial Intelligence and Machine Learning",
+        "test@example.com",
+        "9999999999",
+        "Diagnostic",
+        "Pending",
+      ]);
+      return jsonResponse({ success: true, message: "Test row appended" }, 200);
+    } catch (error) {
+      return jsonResponse({ success: false, message: String(error) }, 500);
+    }
+  }
+
   if (e && e.parameter && e.parameter.ping === "1") {
     return jsonResponse({ success: true, message: "Web app is live" }, 200);
   }
   return jsonResponse({ success: true, message: "API is running" }, 200);
+}
+
+function getSheet_() {
+  try {
+    return SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
+  } catch (_) {
+    const active = SpreadsheetApp.getActiveSpreadsheet();
+    if (!active) return null;
+    return active.getSheetByName(SHEET_NAME);
+  }
 }
 
 function parsePayload(e) {

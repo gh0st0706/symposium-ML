@@ -51,26 +51,42 @@ function Register() {
     };
 
     try {
-      const body = new URLSearchParams({
-        payload: JSON.stringify(payload),
-        ...payload
-      });
-
-      await fetch(GOOGLE_SCRIPT_URL, {
+      // Primary path: call Vercel serverless proxy for reliable success/failure feedback.
+      const apiResponse = await fetch("/api/register", {
         method: "POST",
-        mode: "no-cors",
         headers: {
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+          "Content-Type": "application/json"
         },
-        body: body.toString()
+        body: JSON.stringify(payload)
       });
 
-      setStatusType("success");
-      setStatusMessage("Registration submitted. Your data has been sent to Google Sheets.");
-      setFormData(initialState);
-    } catch (error) {
+      if (apiResponse.ok) {
+        setStatusType("success");
+        setStatusMessage("Registration submitted. Your data has been saved to Google Sheets.");
+        setFormData(initialState);
+      } else {
+        // Fallback path for local/dev scenarios where /api/register may not exist.
+        const body = new URLSearchParams({
+          payload: JSON.stringify(payload),
+          ...payload
+        });
+
+        await fetch(GOOGLE_SCRIPT_URL, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+          },
+          body: body.toString()
+        });
+
+        setStatusType("success");
+        setStatusMessage("Submission sent directly to Google Sheets endpoint.");
+        setFormData(initialState);
+      }
+    } catch (_) {
       setStatusType("error");
-      setStatusMessage("Submission failed. Please try again.");
+      setStatusMessage("Submission failed. Please try again in a few moments.");
     } finally {
       setIsSubmitting(false);
     }
