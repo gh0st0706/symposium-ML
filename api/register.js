@@ -15,12 +15,50 @@ function normalizePayload(body) {
 }
 
 export default async function handler(req, res) {
+  const scriptUrl = process.env.GOOGLE_SCRIPT_URL || DEFAULT_SCRIPT_URL;
+
+  if (req.method === "GET") {
+    const action = req.query?.action;
+    if (!action) {
+      return res.status(200).json({
+        success: true,
+        message: "Registration API online",
+        hint: "Use ?action=diag or ?action=testWrite",
+      });
+    }
+
+    try {
+      const upstream = await fetch(`${scriptUrl}?action=${encodeURIComponent(action)}`, {
+        method: "GET",
+      });
+      const raw = await upstream.text();
+      let parsed = {};
+      try {
+        parsed = JSON.parse(raw);
+      } catch (_) {
+        parsed = { success: upstream.ok, raw };
+      }
+
+      return res.status(upstream.ok ? 200 : 502).json({
+        success: upstream.ok && parsed.success !== false,
+        message: parsed.message || "Diagnostic call finished",
+        upstreamStatus: upstream.status,
+        upstream: parsed,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        success: false,
+        message: "Diagnostic call failed",
+        error: String(error),
+      });
+    }
+  }
+
   if (req.method !== "POST") {
     return res.status(405).json({ success: false, message: "Method not allowed" });
   }
 
   const payload = normalizePayload(req.body);
-  const scriptUrl = process.env.GOOGLE_SCRIPT_URL || DEFAULT_SCRIPT_URL;
 
   if (!payload.fullName || !payload.email || !payload.phone) {
     return res.status(400).json({ success: false, message: "Missing required fields" });
@@ -52,7 +90,8 @@ export default async function handler(req, res) {
       return res.status(502).json({
         success: false,
         message: parsed.message || "Apps Script rejected the submission",
-        status: upstream.status
+        status: upstream.status,
+        upstream: parsed,
       });
     }
 

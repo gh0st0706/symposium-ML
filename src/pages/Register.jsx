@@ -2,10 +2,6 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-const GOOGLE_SCRIPT_URL =
-  import.meta.env.VITE_GOOGLE_SCRIPT_URL ||
-  "https://script.google.com/macros/s/AKfycbxmWwxZoreYhgcEG5JhQcridAKwCWYzWrY97PEDqHdMgnuTO5-YVkzKDrOVZ-thl0Tl/exec";
-
 const initialState = {
   fullName: "",
   collegeName: "CSI College of Engineering",
@@ -31,12 +27,6 @@ function Register() {
     event.preventDefault();
     setStatusMessage("");
 
-    if (!GOOGLE_SCRIPT_URL) {
-      setStatusType("error");
-      setStatusMessage("Missing Google Sheets endpoint URL.");
-      return;
-    }
-
     setIsSubmitting(true);
 
     const payload = {
@@ -51,7 +41,6 @@ function Register() {
     };
 
     try {
-      // Primary path: call Vercel serverless proxy for reliable success/failure feedback.
       const apiResponse = await fetch("/api/register", {
         method: "POST",
         headers: {
@@ -60,33 +49,18 @@ function Register() {
         body: JSON.stringify(payload)
       });
 
-      if (apiResponse.ok) {
-        setStatusType("success");
-        setStatusMessage("Registration submitted. Your data has been saved to Google Sheets.");
-        setFormData(initialState);
-      } else {
-        // Fallback path for local/dev scenarios where /api/register may not exist.
-        const body = new URLSearchParams({
-          payload: JSON.stringify(payload),
-          ...payload
-        });
+      const result = await apiResponse.json().catch(() => ({}));
 
-        await fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          mode: "no-cors",
-          headers: {
-            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-          },
-          body: body.toString()
-        });
-
-        setStatusType("success");
-        setStatusMessage("Submission sent directly to Google Sheets endpoint.");
-        setFormData(initialState);
+      if (!apiResponse.ok || result.success === false) {
+        throw new Error(result.message || "Registration could not be saved to Google Sheets.");
       }
-    } catch (_) {
+
+      setStatusType("success");
+      setStatusMessage("Registration submitted. Your data has been saved to Google Sheets.");
+      setFormData(initialState);
+    } catch (error) {
       setStatusType("error");
-      setStatusMessage("Submission failed. Please try again in a few moments.");
+      setStatusMessage(error.message || "Submission failed. Please try again in a few moments.");
     } finally {
       setIsSubmitting(false);
     }
