@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 
 const contacts = [
-  { label: "Department", value: "CSE - Artificial Intelligence and Machine Learning" },
-  { label: "Email", value: "aiml.symposium@csice.edu.in" },
+  { label: "Symposium", value: "TechLynx 2026" },
+  { label: "Department", value: "AIML Department, CSI College of Engineering" },
+  { label: "Email", value: "techlynx.aiml@csice.edu.in" },
   { label: "Coordinator", value: "+91 98765 43210" },
   { label: "Support", value: "+91 91234 56789" }
 ];
@@ -17,7 +18,7 @@ function Contact() {
         transition={{ duration: 0.55 }}
       >
         <h2 className="section-title">Contact</h2>
-        <p className="section-subtitle">Reach out to the organizing team for registrations, sponsorships, and event support.</p>
+        <p className="section-subtitle">Reach out to the TechLynx organizing team for registrations, support, and collaborations.</p>
       </motion.div>
 
       <div className="mt-10 grid gap-5 md:grid-cols-2">

@@ -2,19 +2,19 @@ import { motion } from "framer-motion";
 
 const highlights = [
   {
-    title: "Innovation-Driven",
-    description: "Projects and prototypes designed for real-world impact and scalable systems.",
-    icon: "??"
+    title: "Future-Focused Innovation",
+    description: "Build practical ideas into deployable products through guided challenges and demos.",
+    icon: "AI"
   },
   {
-    title: "AI-Centric",
-    description: "Deep dives into applied ML, intelligent automation, and data-driven design.",
-    icon: "??"
+    title: "AI + Engineering Core",
+    description: "Experience applied machine learning, software systems, and intelligent automation workflows.",
+    icon: "ML"
   },
   {
-    title: "Engineering Excellence",
-    description: "Structured challenges and mentorship inspired by premier IIT technical events.",
-    icon: "??"
+    title: "Technical + Non-Technical Tracks",
+    description: "Compete in coding and research events, then switch gears into strategy, design, and fun arenas.",
+    icon: "NX"
   }
 ];
 
@@ -31,8 +31,8 @@ function About() {
         <div>
           <h2 className="section-title">About The Symposium</h2>
           <p className="section-subtitle">
-            The AI&ML technical symposium brings together aspiring engineers, researchers, and creators for a high-energy day
-            of ideas, execution, and technical competition.
+            TechLynx is the annual AI&ML department fest of CSI College of Engineering, crafted to feel like a top-tier
+            IIT event with elite production quality, competition energy, and cross-domain participation.
           </p>
         </div>
 

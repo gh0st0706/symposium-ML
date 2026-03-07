@@ -32,15 +32,15 @@ function Hero() {
           transition={{ duration: 0.65, ease: "easeOut" }}
         >
           <p className="mb-4 inline-flex rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-1 text-xs uppercase tracking-[0.22em] text-cyan-200">
-            CSI College of Engineering
+            CSI College of Engineering | AI&ML Department
           </p>
           <h1 className="font-display text-4xl font-extrabold leading-tight text-white md:text-6xl xl:text-7xl">
-            CSE - Artificial Intelligence and Machine Learning
-            <span className="mt-2 block bg-premium-gradient bg-clip-text text-transparent">Technical Symposium 2026</span>
+            TechLynx 2026
+            <span className="mt-2 block bg-premium-gradient bg-clip-text text-transparent">AI&ML Technical Symposium</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-slate-300 md:text-xl">
-            A high-impact engineering showcase inspired by premier IIT festivals with curated competitions,
-            technical workshops, and innovation-driven collaboration.
+            A flagship fest experience with technical and non-technical competitions, immersive workshops,
+            coding battles, and high-energy team challenges designed for modern engineers.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link to="/register" className="gradient-btn">Register Now</Link>
@@ -63,7 +63,7 @@ function Hero() {
             </div>
             <div className="rounded-xl border border-white/15 bg-white/5 p-4">
               <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Department</p>
-              <p className="mt-2">CSE - AI&ML</p>
+              <p className="mt-2">AIML Department</p>
             </div>
           </div>
         </motion.div>

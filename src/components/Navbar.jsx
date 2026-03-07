@@ -27,7 +27,7 @@ function Navbar() {
     >
       <nav className="section-wrap flex items-center justify-between py-4">
         <Link to="/" className="font-display text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300 md:text-base">
-          CSI AI&ML
+          TechLynx
         </Link>
         <div className="hidden items-center gap-8 md:flex">
           {links.map((item) => (

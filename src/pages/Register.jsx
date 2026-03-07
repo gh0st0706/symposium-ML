@@ -9,7 +9,7 @@ const GOOGLE_SCRIPT_URL =
 const initialState = {
   fullName: "",
   collegeName: "CSI College of Engineering",
-  department: "CSE - Artificial Intelligence and Machine Learning",
+  department: "AIML Department",
   email: "",
   phoneNumber: "",
   eventSelected: "Hackathon",
@@ -84,9 +84,9 @@ function Register() {
         transition={{ duration: 0.55 }}
         className="mx-auto w-full max-w-3xl rounded-3xl border border-white/15 bg-slate-950/70 p-8 backdrop-blur-xl md:p-10"
       >
-        <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">Symposium Registration</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">TechLynx Registration</p>
         <h1 className="mt-3 font-display text-3xl font-bold text-white md:text-4xl">Secure Your Spot</h1>
-        <p className="mt-3 text-slate-300">Fill the form to participate in the CSI CSE AI&ML Technical Symposium 2026.</p>
+        <p className="mt-3 text-slate-300">Register for TechLynx 2026 by the AIML Department, CSI College of Engineering.</p>
 
         <form onSubmit={onSubmit} className="mt-8 grid gap-4 md:grid-cols-2">
           <label className="text-sm text-slate-200 md:col-span-2">
@@ -116,6 +116,10 @@ function Register() {
               <option className="bg-slate-900">Paper Presentation</option>
               <option className="bg-slate-900">AI Workshop</option>
               <option className="bg-slate-900">Technical Quiz</option>
+              <option className="bg-slate-900">Design Sprint</option>
+              <option className="bg-slate-900">Brand Battle</option>
+              <option className="bg-slate-900">Cine Quiz</option>
+              <option className="bg-slate-900">Treasure Hunt</option>
             </select>
           </label>
           <label className="text-sm text-slate-200">
