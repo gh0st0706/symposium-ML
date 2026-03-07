@@ -1,8 +1,9 @@
+const SPREADSHEET_ID = "PASTE_YOUR_SHEET_ID_HERE";
 const SHEET_NAME = "registrations";
 
 function doPost(e) {
   try {
-    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName(SHEET_NAME);
+    const sheet = SpreadsheetApp.openById(SPREADSHEET_ID).getSheetByName(SHEET_NAME);
     if (!sheet) {
       return jsonResponse({ success: false, message: "Sheet not found" }, 400);
     }
@@ -31,7 +32,10 @@ function doPost(e) {
   }
 }
 
-function doGet() {
+function doGet(e) {
+  if (e && e.parameter && e.parameter.ping === "1") {
+    return jsonResponse({ success: true, message: "Web app is live" }, 200);
+  }
   return jsonResponse({ success: true, message: "API is running" }, 200);
 }
 

@@ -25,10 +25,12 @@ Set this in `.env` (optional, already in `.env.example`):
 ## Important for Sheets writes
 1. In your Google Sheet, sheet tab name must be exactly: `registrations`.
 2. Paste `google-apps-script/Code.gs` into Apps Script editor.
-3. Deploy as Web App:
+3. In `Code.gs`, set `SPREADSHEET_ID` from your sheet URL (between `/d/` and `/edit`).
+4. Deploy as Web App:
    - Execute as: `Me`
    - Who has access: `Anyone`
-4. After code changes, click `Deploy > Manage deployments > Edit > Deploy` again.
+5. After code changes, click `Deploy > Manage deployments > Edit > Deploy` again.
+6. Quick check: open `/exec?ping=1` and confirm JSON response.
 
 ## Run locally
 1. `npm install`
