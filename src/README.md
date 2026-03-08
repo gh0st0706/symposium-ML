@@ -1,68 +1,60 @@
-# CSI CSE AI&ML Technical Symposium Website
+# TechLynx 2026 | AIML Department Symposium
 
-Premium React + Tailwind + Framer Motion frontend for:
-- Department: CSE - Artificial Intelligence and Machine Learning
-- College: CSI College of Engineering
+Premium React + Tailwind + Framer Motion website for TechLynx at CSI College of Engineering.
 
-## Tech Stack
+## Stack
 - React (Vite)
 - Tailwind CSS
 - Framer Motion
-- React Router
-- Google Apps Script + Google Sheets (registrations)
+- Vercel Serverless API (`/api/register`)
+- Google Sheets API (service account)
 
 ## Routes
 - `/` Home
 - `/register` Register
+- `/api/register` Registration API
 
-## Google Sheets registration endpoint
-This project sends registration form data to:
-`https://script.google.com/macros/s/AKfycbxmWwxZoreYhgcEG5JhQcridAKwCWYzWrY97PEDqHdMgnuTO5-YVkzKDrOVZ-thl0Tl/exec`
+## New registration backend (no Apps Script)
+Registration is saved by `api/register.js` directly into Google Sheets.
 
-Set this in `.env` (optional, already in `.env.example`):
-- `VITE_GOOGLE_SCRIPT_URL=...`
+### 1) Create/prepare Google Sheet
+- Create a sheet with tab name: `registrations`
+- Header row (A-H):
+  - `Timestamp | Full Name | College | Department | Email | Phone | Event | Payment Status`
+- Copy sheet ID from URL: `https://docs.google.com/spreadsheets/d/<SHEET_ID>/edit`
 
-## Registration workaround (recommended)
-This project now uses a Vercel serverless proxy:
-- `POST /api/register` -> forwards payload to Apps Script -> returns real success/failure.
+### 2) Create Google service account
+- In Google Cloud Console, enable **Google Sheets API**.
+- Create a service account and generate a JSON key.
+- Copy these from JSON:
+  - `client_email`
+  - `private_key`
 
-For production on Vercel, add environment variable:
-- `GOOGLE_SCRIPT_URL=https://script.google.com/macros/s/.../exec`
+### 3) Share sheet with service account
+- Open the sheet -> Share
+- Add service account `client_email` as **Editor**
 
-Diagnostics on deployed site:
-- `/api/register?action=diag`
-- `/api/register?action=testWrite`
+### 4) Configure Vercel env vars
+Set in Vercel Project -> Settings -> Environment Variables:
+- `GOOGLE_SERVICE_ACCOUNT_EMAIL`
+- `GOOGLE_PRIVATE_KEY`
+  - Keep escaped newlines: `\n`
+- `GOOGLE_SHEET_ID`
+- `GOOGLE_SHEET_RANGE` = `registrations!A:H`
 
-## Important for Sheets writes
-1. In your Google Sheet, sheet tab name must be exactly: `registrations`.
-2. Paste `google-apps-script/Code.gs` into Apps Script editor.
-3. In `Code.gs`, set `SPREADSHEET_ID` from your sheet URL (between `/d/` and `/edit`).
-4. Deploy as Web App:
-   - Execute as: `Me`
-   - Who has access: `Anyone`
-5. After code changes, click `Deploy > Manage deployments > Edit > Deploy` again.
-6. Quick check: open `/exec?ping=1` and confirm JSON response.
+### 5) Deploy and test
+- Redeploy Vercel.
+- Diagnostics:
+  - `/api/register?action=diag`
+  - `/api/register?action=testWrite`
 
-## Run locally
+If `testWrite` succeeds, form submissions will write to sheet.
+
+## Local run
 1. `npm install`
-2. `npm run dev`
-3. Open `http://localhost:5173`
+2. Set same env vars in local shell or `.env.local`
+3. `npm run dev`
 
 ## Build
 - `npm run build`
 - `npm run preview`
-
-## Project structure
-- `src/components/Navbar.jsx`
-- `src/components/Hero.jsx`
-- `src/components/EventCard.jsx`
-- `src/components/CountdownTimer.jsx`
-- `src/components/Footer.jsx`
-- `src/sections/About.jsx`
-- `src/sections/Events.jsx`
-- `src/sections/Schedule.jsx`
-- `src/sections/RegisterCTA.jsx`
-- `src/sections/Contact.jsx`
-- `src/pages/Home.jsx`
-- `src/pages/Register.jsx`
-- `src/App.jsx`

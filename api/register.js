@@ -1,5 +1,6 @@
-const DEFAULT_SCRIPT_URL =
-  "https://script.google.com/macros/s/AKfycbxmWwxZoreYhgcEG5JhQcridAKwCWYzWrY97PEDqHdMgnuTO5-YVkzKDrOVZ-thl0Tl/exec";
+import { google } from "googleapis";
+
+const DEFAULT_RANGE = "registrations!A:H";
 
 function normalizePayload(body) {
   if (!body) return {};
@@ -14,11 +15,52 @@ function normalizePayload(body) {
   return {};
 }
 
-export default async function handler(req, res) {
-  const scriptUrl = process.env.GOOGLE_SCRIPT_URL || DEFAULT_SCRIPT_URL;
+function getConfig() {
+  const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+  const privateKeyRaw = process.env.GOOGLE_PRIVATE_KEY;
+  const spreadsheetId = process.env.GOOGLE_SHEET_ID;
+  const range = process.env.GOOGLE_SHEET_RANGE || DEFAULT_RANGE;
 
+  if (!clientEmail || !privateKeyRaw || !spreadsheetId) {
+    throw new Error("Missing env vars: GOOGLE_SERVICE_ACCOUNT_EMAIL, GOOGLE_PRIVATE_KEY, GOOGLE_SHEET_ID");
+  }
+
+  const privateKey = privateKeyRaw.replace(/\\n/g, "\n");
+
+  return { clientEmail, privateKey, spreadsheetId, range };
+}
+
+async function getSheetsApi() {
+  const { clientEmail, privateKey } = getConfig();
+  const auth = new google.auth.JWT({
+    email: clientEmail,
+    key: privateKey,
+    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
+  });
+
+  await auth.authorize();
+  return google.sheets({ version: "v4", auth });
+}
+
+async function appendRow(values) {
+  const { spreadsheetId, range } = getConfig();
+  const sheets = await getSheetsApi();
+
+  return sheets.spreadsheets.values.append({
+    spreadsheetId,
+    range,
+    valueInputOption: "USER_ENTERED",
+    insertDataOption: "INSERT_ROWS",
+    requestBody: {
+      values: [values],
+    },
+  });
+}
+
+export default async function handler(req, res) {
   if (req.method === "GET") {
     const action = req.query?.action;
+
     if (!action) {
       return res.status(200).json({
         success: true,
@@ -28,27 +70,44 @@ export default async function handler(req, res) {
     }
 
     try {
-      const upstream = await fetch(`${scriptUrl}?action=${encodeURIComponent(action)}`, {
-        method: "GET",
-      });
-      const raw = await upstream.text();
-      let parsed = {};
-      try {
-        parsed = JSON.parse(raw);
-      } catch (_) {
-        parsed = { success: upstream.ok, raw };
+      const { spreadsheetId, range } = getConfig();
+      const sheets = await getSheetsApi();
+
+      if (action === "diag") {
+        const meta = await sheets.spreadsheets.get({ spreadsheetId });
+        return res.status(200).json({
+          success: true,
+          message: "Diagnostics ok",
+          spreadsheetId,
+          spreadsheetTitle: meta.data.properties?.title,
+          range,
+        });
       }
 
-      return res.status(upstream.ok ? 200 : 502).json({
-        success: upstream.ok && parsed.success !== false,
-        message: parsed.message || "Diagnostic call finished",
-        upstreamStatus: upstream.status,
-        upstream: parsed,
-      });
+      if (action === "testWrite") {
+        const result = await appendRow([
+          new Date().toISOString(),
+          "TEST ENTRY",
+          "CSI College of Engineering",
+          "AIML Department",
+          "test@example.com",
+          "9999999999",
+          "Diagnostic",
+          "Pending",
+        ]);
+
+        return res.status(200).json({
+          success: true,
+          message: "Test row appended",
+          updatedRange: result.data.updates?.updatedRange,
+        });
+      }
+
+      return res.status(400).json({ success: false, message: "Unknown action" });
     } catch (error) {
       return res.status(500).json({
         success: false,
-        message: "Diagnostic call failed",
+        message: "Diagnostic failed",
         error: String(error),
       });
     }
@@ -58,45 +117,34 @@ export default async function handler(req, res) {
     return res.status(405).json({ success: false, message: "Method not allowed" });
   }
 
-  const payload = normalizePayload(req.body);
-
-  if (!payload.fullName || !payload.email || !payload.phone) {
-    return res.status(400).json({ success: false, message: "Missing required fields" });
-  }
-
   try {
-    const body = new URLSearchParams({
-      payload: JSON.stringify(payload),
-      ...payload
-    });
+    const payload = normalizePayload(req.body);
 
-    const upstream = await fetch(scriptUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-      },
-      body: body.toString()
-    });
-
-    const rawText = await upstream.text();
-    let parsed = {};
-    try {
-      parsed = JSON.parse(rawText);
-    } catch (_) {
-      parsed = { success: upstream.ok };
+    if (!payload.fullName || !payload.email || !payload.phone) {
+      return res.status(400).json({ success: false, message: "Missing required fields" });
     }
 
-    if (!upstream.ok || parsed.success === false) {
-      return res.status(502).json({
-        success: false,
-        message: parsed.message || "Apps Script rejected the submission",
-        status: upstream.status,
-        upstream: parsed,
-      });
-    }
+    const result = await appendRow([
+      payload.submittedAt || new Date().toISOString(),
+      payload.fullName || "",
+      payload.collegeName || "",
+      payload.department || "",
+      payload.email || "",
+      payload.phone || "",
+      payload.eventSelected || "",
+      payload.paymentStatus || "",
+    ]);
 
-    return res.status(200).json({ success: true, message: "Saved to Google Sheets" });
+    return res.status(200).json({
+      success: true,
+      message: "Saved to Google Sheets",
+      updatedRange: result.data.updates?.updatedRange,
+    });
   } catch (error) {
-    return res.status(500).json({ success: false, message: String(error) });
+    return res.status(500).json({
+      success: false,
+      message: "Failed to save registration",
+      error: String(error),
+    });
   }
 }
