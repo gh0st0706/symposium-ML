@@ -3,11 +3,11 @@ import esportsFloatTwo from "../assets/2.jpeg";
 import esportsFloatThree from "../assets/3.jpeg";
 import dogeImage from "../assets/doge.jpeg";
 import reelsIcon from "../assets/Instagram Reels icon in iOS Style.jpeg";
-import lightBulbImage from "../assets/Download premium png of PNG Vintage light bulb illustration by Jo about light bulb collage, bulb, background, png, and paper 22805487.jpeg";
-import laptopHandsImage from "../assets/laptop logo sticker _ Download free png of PNG Retro hands typing laptop illustration_ by Hein.jpeg";
-import promptWordsImage from "../assets/Today I was experimenting with meaningless sets of words to create prompts, I th___.jpeg";
-import talentShowImage from "../assets/download (3).jpeg";
-import shortFilmImage from "../assets/download (4).jpeg";
+import lightBulbImage from "../assets/ideathon-bulb.jpeg";
+import laptopHandsImage from "../assets/prompting-laptop.jpeg";
+import promptWordsImage from "../assets/prompting-words.jpeg";
+import talentShowImage from "../assets/talent-show.jpeg";
+import shortFilmImage from "../assets/short-film.jpeg";
 
 export const technicalEvents = [
   {
