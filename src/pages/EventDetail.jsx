@@ -54,7 +54,7 @@ function FloatingElements({ items }) {
               {...sharedProps}
               src={item.src}
               alt=""
-              className="absolute h-20 w-20 rounded-2xl object-cover opacity-85 shadow-[0_0_28px_rgba(34,211,238,0.35)]"
+              className="absolute h-28 w-28 rounded-3xl object-cover opacity-90 shadow-[0_0_34px_rgba(34,211,238,0.4)]"
               onClick={() => onShuffle(index)}
               whileTap={{ scale: 0.96 }}
             />
@@ -64,7 +64,7 @@ function FloatingElements({ items }) {
         return (
           <motion.div
             {...sharedProps}
-            className="absolute rounded-full border border-cyan-300/40 bg-cyan-300/10 px-5 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200"
+            className="absolute rounded-full border border-cyan-300/40 bg-cyan-300/10 px-6 py-3 text-base font-semibold uppercase tracking-[0.2em] text-cyan-100"
             onClick={() => onShuffle(index)}
             whileTap={{ scale: 0.96 }}
           >
