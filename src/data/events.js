@@ -3,6 +3,11 @@ import esportsFloatTwo from "../assets/2.jpeg";
 import esportsFloatThree from "../assets/3.jpeg";
 import dogeImage from "../assets/doge.jpeg";
 import reelsIcon from "../assets/Instagram Reels icon in iOS Style.jpeg";
+import lightBulbImage from "../assets/Download premium png of PNG Vintage light bulb illustration by Jo about light bulb collage, bulb, background, png, and paper 22805487.jpeg";
+import laptopHandsImage from "../assets/laptop logo sticker _ Download free png of PNG Retro hands typing laptop illustration_ by Hein.jpeg";
+import promptWordsImage from "../assets/Today I was experimenting with meaningless sets of words to create prompts, I th___.jpeg";
+import talentShowImage from "../assets/download (3).jpeg";
+import shortFilmImage from "../assets/download (4).jpeg";
 
 export const technicalEvents = [
   {
@@ -15,9 +20,9 @@ export const technicalEvents = [
     icon: "T1",
     prize: "TBA",
     floaters: [
+      { type: "image", src: lightBulbImage },
       { type: "label", label: "Ideate" },
-      { type: "label", label: "Pitch" },
-      { type: "label", label: "Validate" }
+      { type: "label", label: "Pitch" }
     ]
   },
   {
@@ -30,9 +35,9 @@ export const technicalEvents = [
     icon: "T2",
     prize: "TBA",
     floaters: [
-      { type: "label", label: "Prompt" },
-      { type: "label", label: "Refine" },
-      { type: "label", label: "Evaluate" }
+      { type: "image", src: laptopHandsImage },
+      { type: "image", src: promptWordsImage },
+      { type: "label", label: "Refine" }
     ]
   }
 ];
@@ -63,8 +68,8 @@ export const nonTechnicalEvents = [
     icon: "N2",
     prize: "TBA",
     floaters: [
+      { type: "image", src: talentShowImage },
       { type: "label", label: "Stage" },
-      { type: "label", label: "Perform" },
       { type: "label", label: "Encore" }
     ]
   }
@@ -81,8 +86,8 @@ export const preEvents = [
     icon: "P1",
     prize: "TBA",
     floaters: [
+      { type: "image", src: shortFilmImage },
       { type: "label", label: "Storyboard" },
-      { type: "label", label: "Shoot" },
       { type: "label", label: "Edit" }
     ]
   },

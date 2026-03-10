@@ -1,27 +1,51 @@
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { eventBySlug } from "../data/events";
 
 const floatPositions = [
   { top: "8%", left: "8%" },
   { top: "12%", right: "12%" },
+  { top: "28%", left: "62%" },
   { bottom: "18%", left: "18%" },
-  { bottom: "14%", right: "16%" }
+  { bottom: "14%", right: "16%" },
+  { top: "56%", right: "18%" }
 ];
 
 function FloatingElements({ items }) {
   if (!items?.length) return null;
 
+  const [positions, setPositions] = useState(() =>
+    items.map((_, index) => index % floatPositions.length)
+  );
+
+  useEffect(() => {
+    setPositions(items.map((_, index) => index % floatPositions.length));
+  }, [items]);
+
+  const pickNewIndex = (current) => {
+    if (floatPositions.length <= 1) return current;
+    let next = current;
+    while (next === current) {
+      next = Math.floor(Math.random() * floatPositions.length);
+    }
+    return next;
+  };
+
+  const onShuffle = (index) => {
+    setPositions((prev) => prev.map((value, i) => (i === index ? pickNewIndex(value) : value)));
+  };
+
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className="absolute inset-0 overflow-hidden">
       {items.map((item, index) => {
-        const position = floatPositions[index % floatPositions.length];
+        const position = floatPositions[positions[index] ?? 0];
         const sharedProps = {
           key: `${item.type}-${item.label || item.src}-${index}`,
           style: position,
-          animate: { y: [0, -20, 0], opacity: [0.4, 0.95, 0.4] },
-          transition: { duration: 6 + index, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 },
-          className: "absolute"
+          animate: { y: [0, -12, 0], x: [0, 8, -6], rotate: [0, 4, -4], opacity: [0.45, 0.9, 0.45] },
+          transition: { duration: 12 + index * 1.5, repeat: Infinity, ease: "easeInOut", delay: index * 0.4 },
+          className: "absolute pointer-events-auto cursor-pointer"
         };
 
         if (item.type === "image") {
@@ -30,7 +54,9 @@ function FloatingElements({ items }) {
               {...sharedProps}
               src={item.src}
               alt=""
-              className="absolute h-16 w-16 rounded-2xl object-cover opacity-80 shadow-[0_0_24px_rgba(34,211,238,0.35)]"
+              className="absolute h-20 w-20 rounded-2xl object-cover opacity-85 shadow-[0_0_28px_rgba(34,211,238,0.35)]"
+              onClick={() => onShuffle(index)}
+              whileTap={{ scale: 0.96 }}
             />
           );
         }
@@ -38,7 +64,9 @@ function FloatingElements({ items }) {
         return (
           <motion.div
             {...sharedProps}
-            className="absolute rounded-full border border-cyan-300/40 bg-cyan-300/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-200"
+            className="absolute rounded-full border border-cyan-300/40 bg-cyan-300/10 px-5 py-2 text-sm font-semibold uppercase tracking-[0.2em] text-cyan-200"
+            onClick={() => onShuffle(index)}
+            whileTap={{ scale: 0.96 }}
           >
             {item.label}
           </motion.div>
