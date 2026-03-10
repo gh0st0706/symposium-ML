@@ -18,7 +18,7 @@ function RegisterCTA() {
           Choose your arena: Technical or Non-Technical.
         </h2>
         <p className="relative mt-4 max-w-2xl text-slate-300">
-          Register now for competitive coding, research, AI workshops, and crowd-favorite non-technical challenges.
+          Register now for IdeathonX, Prompting, eSports, Talent Show, and creative pre-events.
         </p>
         <div className="relative mt-8 flex flex-wrap items-center gap-4">
           <Link to="/register" className="gradient-btn">Proceed to Register</Link>

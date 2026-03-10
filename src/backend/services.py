@@ -4,16 +4,16 @@ from .config import Settings
 
 FEATURES = [
     {
-        "title": "Neon HackArena",
-        "description": "24-hour coding battleground with AI, Web3, and cybersecurity tracks for elite builders.",
+        "title": "IdeathonX",
+        "description": "Pitch bold ideas with rapid validation rounds and mentor feedback.",
     },
     {
-        "title": "Robo Rift League",
-        "description": "Autonomous bots, drone race circuits, and hardware combat challenges in immersive zones.",
+        "title": "Prompting",
+        "description": "Solve real-world tasks with prompt engineering and evaluation challenges.",
     },
     {
-        "title": "Quantum Keynotes",
-        "description": "Industry pioneers decode deep tech trends from advanced semiconductors to applied AGI.",
+        "title": "eSports",
+        "description": "Competitive brackets with high-energy gameplay and live shoutcasts.",
     },
 ]
 

@@ -3,55 +3,52 @@ import EventCard from "../components/EventCard";
 
 const technicalEvents = [
   {
-    title: "Hackathon",
-    description: "Build AI-first solutions in a timed sprint with mentor checkpoints and final jury rounds.",
+    title: "IdeathonX",
+    description: "Pitch bold problem statements and solution blueprints with rapid validation rounds.",
     icon: "T1",
-    prize: "INR 50,000"
+    prize: "TBA"
   },
   {
-    title: "Paper Presentation",
-    description: "Present research ideas, system designs, and novel approaches before expert panels.",
+    title: "Prompting",
+    description: "Solve real-world challenges with prompt engineering, evaluation, and refinement.",
     icon: "T2",
-    prize: "INR 20,000"
-  },
-  {
-    title: "AI Workshop",
-    description: "Hands-on sessions on model building, deployment, and real-world ML workflow design.",
-    icon: "T3",
-    prize: "Certificates"
-  },
-  {
-    title: "Technical Quiz",
-    description: "High-speed rounds on AI, coding fundamentals, data science, and engineering trends.",
-    icon: "T4",
-    prize: "INR 10,000"
+    prize: "TBA"
   }
 ];
 
 const nonTechnicalEvents = [
   {
-    title: "Design Sprint",
-    description: "Rapid UI/UX challenge focused on storytelling, product thinking, and visual clarity.",
+    title: "eSports",
+    description: "Competitive brackets with live shoutcasts and high-energy matchups.",
     icon: "N1",
-    prize: "INR 8,000"
+    prize: "TBA"
   },
   {
-    title: "Brand Battle",
-    description: "Pitch and defend a creative campaign strategy in front of judges and peer audience.",
+    title: "Talent Show",
+    description: "Stage performances that celebrate creativity, confidence, and showmanship.",
     icon: "N2",
-    prize: "INR 7,000"
+    prize: "TBA"
+  }
+];
+
+const preEvents = [
+  {
+    title: "Short Film",
+    description: "Tell a story in under time with impactful visuals and narrative clarity.",
+    icon: "P1",
+    prize: "TBA"
   },
   {
-    title: "Cine Quiz",
-    description: "A crowd-favorite non-technical quiz with cinema, pop-culture, and logic twists.",
-    icon: "N3",
-    prize: "INR 5,000"
+    title: "Meme Making",
+    description: "Create sharp, tech-flavored memes with originality and timing.",
+    icon: "P2",
+    prize: "TBA"
   },
   {
-    title: "Treasure Hunt",
-    description: "Team-based puzzle and clue chase across campus zones with live checkpoints.",
-    icon: "N4",
-    prize: "INR 6,000"
+    title: "Reels Making",
+    description: "Craft fast, engaging reels that capture TechLynx energy.",
+    icon: "P3",
+    prize: "TBA"
   }
 ];
 
@@ -66,7 +63,7 @@ function Events() {
       >
         <h2 className="section-title">Event Arenas</h2>
         <p className="section-subtitle">
-          TechLynx blends cybersecurity and AI/ML competitions with high-energy non-technical tracks for a complete fest experience.
+          TechLynx blends cybersecurity and AI/ML competitions with high-energy non-technical tracks and creative pre-events.
         </p>
       </motion.div>
 
@@ -83,6 +80,15 @@ function Events() {
         <h3 className="font-display text-2xl font-semibold text-violet-200">Non-Technical Events</h3>
         <div className="mt-5 grid gap-6 md:grid-cols-2">
           {nonTechnicalEvents.map((event) => (
+            <EventCard key={event.title} event={event} />
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-12">
+        <h3 className="font-display text-2xl font-semibold text-rose-200">Pre-Events</h3>
+        <div className="mt-5 grid gap-6 md:grid-cols-3">
+          {preEvents.map((event) => (
             <EventCard key={event.title} event={event} />
           ))}
         </div>

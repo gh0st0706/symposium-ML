@@ -8,7 +8,7 @@ const initialState = {
   department: "Cybersecurity & AI & ML Departments",
   email: "",
   phoneNumber: "",
-  eventSelected: "Hackathon",
+  eventSelected: "IdeathonX",
   paymentStatus: "Pending"
 };
 
@@ -102,14 +102,13 @@ function Register() {
           <label className="text-sm text-slate-200">
             Event Selected
             <select className="mt-2 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white outline-none ring-cyan-300/40 focus:ring" name="eventSelected" value={formData.eventSelected} onChange={onChange}>
-              <option className="bg-slate-900">Hackathon</option>
-              <option className="bg-slate-900">Paper Presentation</option>
-              <option className="bg-slate-900">AI Workshop</option>
-              <option className="bg-slate-900">Technical Quiz</option>
-              <option className="bg-slate-900">Design Sprint</option>
-              <option className="bg-slate-900">Brand Battle</option>
-              <option className="bg-slate-900">Cine Quiz</option>
-              <option className="bg-slate-900">Treasure Hunt</option>
+              <option className="bg-slate-900">IdeathonX</option>
+              <option className="bg-slate-900">Prompting</option>
+              <option className="bg-slate-900">eSports</option>
+              <option className="bg-slate-900">Talent Show</option>
+              <option className="bg-slate-900">Short Film</option>
+              <option className="bg-slate-900">Meme Making</option>
+              <option className="bg-slate-900">Reels Making</option>
             </select>
           </label>
           <label className="text-sm text-slate-200">
