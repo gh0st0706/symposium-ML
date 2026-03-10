@@ -9,6 +9,25 @@ const schedule = [
   { time: "05:30 PM", title: "Valediction and Awards", note: "Prize distribution and closing ceremony" }
 ];
 
+const containerVariants = {
+  hidden: {},
+  show: {
+    transition: {
+      staggerChildren: 0.08
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(6px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.6, ease: "easeOut" }
+  }
+};
+
 function Schedule() {
   return (
     <section id="schedule" className="section-wrap py-24">
@@ -22,14 +41,17 @@ function Schedule() {
         <p className="section-subtitle">A premium two-day flow engineered for technical depth, stage energy, and audience engagement.</p>
       </motion.div>
 
-      <div className="relative mt-12 space-y-5 border-l border-cyan-300/35 pl-7">
+      <motion.div
+        className="relative mt-12 space-y-5 border-l border-cyan-300/35 pl-7"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+      >
         {schedule.map((item, index) => (
           <motion.article
             key={item.time}
-            initial={{ opacity: 0, x: -18 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ duration: 0.4, delay: index * 0.06 }}
+            variants={itemVariants}
             className="glass-panel rounded-2xl p-5"
           >
             <span className="absolute -left-[9px] mt-2 h-4 w-4 rounded-full border-2 border-cyan-300 bg-ink" />
@@ -38,7 +60,7 @@ function Schedule() {
             <p className="mt-1 text-sm text-slate-300">{item.note}</p>
           </motion.article>
         ))}
-      </div>
+      </motion.div>
     </section>
   );
 }
