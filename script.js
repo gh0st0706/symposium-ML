@@ -52,7 +52,7 @@ function startCountdown(targetDate, eventName) {
 
 async function initCountdown() {
   const fallbackDate = new Date('2026-09-18T09:00:00+05:30');
-  const fallbackEventName = 'SympX 2026';
+  const fallbackEventName = 'TechLynx 2026';
 
   try {
     const response = await fetch('/api/v1/event', { headers: { Accept: 'application/json' } });

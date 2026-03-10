@@ -3,7 +3,7 @@ import pathlib
 import streamlit as st
 import streamlit.components.v1 as components
 
-st.set_page_config(page_title="SympX 2026 | Future Tech Symposium", page_icon="SX", layout="wide")
+st.set_page_config(page_title="TechLynx 2026 | Future Tech Symposium", page_icon="TL", layout="wide")
 
 
 def load_site_html() -> str:
