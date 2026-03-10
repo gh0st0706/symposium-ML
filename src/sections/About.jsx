@@ -7,9 +7,9 @@ const highlights = [
     icon: "AI"
   },
   {
-    title: "AI + Engineering Core",
-    description: "Experience applied machine learning, software systems, and intelligent automation workflows.",
-    icon: "ML"
+    title: "Cybersecurity + AI/ML Core",
+    description: "Experience applied machine learning, secure systems design, and intelligent automation workflows.",
+    icon: "CS"
   },
   {
     title: "Technical + Non-Technical Tracks",
@@ -31,8 +31,8 @@ function About() {
         <div>
           <h2 className="section-title">About The Symposium</h2>
           <p className="section-subtitle">
-            TechLynx is the annual AI&ML department fest of CSI College of Engineering, crafted to feel like a top-tier
-            IIT event with elite production quality, competition energy, and cross-domain participation.
+            TechLynx is the joint symposium of the Cybersecurity and AI &amp; ML departments at CSI College of Engineering,
+            crafted to feel like a top-tier IIT event with elite production quality, competition energy, and cross-domain participation.
           </p>
         </div>
 

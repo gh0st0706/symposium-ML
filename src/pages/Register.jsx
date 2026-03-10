@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const initialState = {
   fullName: "",
   collegeName: "CSI College of Engineering",
-  department: "AIML Department",
+  department: "Cybersecurity & AI & ML Departments",
   email: "",
   phoneNumber: "",
   eventSelected: "Hackathon",
@@ -76,7 +76,7 @@ function Register() {
       >
         <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">TechLynx Registration</p>
         <h1 className="mt-3 font-display text-3xl font-bold text-white md:text-4xl">Secure Your Spot</h1>
-        <p className="mt-3 text-slate-300">Register for TechLynx 2026 by the AIML Department, CSI College of Engineering.</p>
+        <p className="mt-3 text-slate-300">Register for TechLynx 2026 by the Cybersecurity &amp; AI &amp; ML departments, CSI College of Engineering.</p>
 
         <form onSubmit={onSubmit} className="mt-8 grid gap-4 md:grid-cols-2">
           <label className="text-sm text-slate-200 md:col-span-2">
