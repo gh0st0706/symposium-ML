@@ -52,7 +52,8 @@ function Register() {
       const result = await apiResponse.json().catch(() => ({}));
 
       if (!apiResponse.ok || result.success === false) {
-        throw new Error(result.message || "Registration could not be saved to Google Sheets.");
+        const detail = result.error ? ` (${result.error})` : "";
+        throw new Error(`${result.message || "Registration could not be saved to Google Sheets."}${detail}`);
       }
 
       setStatusType("success");
@@ -60,7 +61,12 @@ function Register() {
       setFormData(initialState);
     } catch (error) {
       setStatusType("error");
-      setStatusMessage(error.message || "Submission failed. Please try again in a few moments.");
+      const message = error?.message || "Submission failed. Please try again in a few moments.";
+      setStatusMessage(
+        message.includes("Failed to fetch")
+          ? "Registration API unreachable. Check Vercel deployment and environment variables."
+          : message
+      );
     } finally {
       setIsSubmitting(false);
     }
