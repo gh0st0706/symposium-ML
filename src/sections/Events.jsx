@@ -1,5 +1,10 @@
 import { motion } from "framer-motion";
 import EventCard from "../components/EventCard";
+import esportsFloatOne from "../assets/1.jpeg";
+import esportsFloatTwo from "../assets/2.jpeg";
+import esportsFloatThree from "../assets/3.jpeg";
+import dogeImage from "../assets/doge.jpeg";
+import reelsIcon from "../assets/Instagram Reels icon in iOS Style.jpeg";
 
 const technicalEvents = [
   {
@@ -21,7 +26,8 @@ const nonTechnicalEvents = [
     title: "eSports",
     description: "Competitive brackets with live shoutcasts and high-energy matchups.",
     icon: "N1",
-    prize: "TBA"
+    prize: "TBA",
+    floaters: [esportsFloatOne, esportsFloatTwo, esportsFloatThree]
   },
   {
     title: "Talent Show",
@@ -42,12 +48,14 @@ const preEvents = [
     title: "Meme Making",
     description: "Create sharp, tech-flavored memes with originality and timing.",
     icon: "P2",
+    image: dogeImage,
     prize: "TBA"
   },
   {
     title: "Reels Making",
     description: "Craft fast, engaging reels that capture TechLynx energy.",
     icon: "P3",
+    image: reelsIcon,
     prize: "TBA"
   }
 ];
