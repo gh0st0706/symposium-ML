@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import Register from "./pages/Register";
+import EventDetail from "./pages/EventDetail";
 
 function App() {
   const location = useLocation();
@@ -22,6 +23,7 @@ function App() {
           <Routes location={location}>
             <Route path="/" element={<Home />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/events/:slug" element={<EventDetail />} />
           </Routes>
         </motion.div>
       </AnimatePresence>

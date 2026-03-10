@@ -1,64 +1,7 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import EventCard from "../components/EventCard";
-import esportsFloatOne from "../assets/1.jpeg";
-import esportsFloatTwo from "../assets/2.jpeg";
-import esportsFloatThree from "../assets/3.jpeg";
-import dogeImage from "../assets/doge.jpeg";
-import reelsIcon from "../assets/Instagram Reels icon in iOS Style.jpeg";
-
-const technicalEvents = [
-  {
-    title: "IdeathonX",
-    description: "Pitch bold problem statements and solution blueprints with rapid validation rounds.",
-    icon: "T1",
-    prize: "TBA"
-  },
-  {
-    title: "Prompting",
-    description: "Solve real-world challenges with prompt engineering, evaluation, and refinement.",
-    icon: "T2",
-    prize: "TBA"
-  }
-];
-
-const nonTechnicalEvents = [
-  {
-    title: "eSports",
-    description: "Competitive brackets with live shoutcasts and high-energy matchups.",
-    icon: "N1",
-    prize: "TBA",
-    floaters: [esportsFloatOne, esportsFloatTwo, esportsFloatThree]
-  },
-  {
-    title: "Talent Show",
-    description: "Stage performances that celebrate creativity, confidence, and showmanship.",
-    icon: "N2",
-    prize: "TBA"
-  }
-];
-
-const preEvents = [
-  {
-    title: "Short Film",
-    description: "Tell a story in under time with impactful visuals and narrative clarity.",
-    icon: "P1",
-    prize: "TBA"
-  },
-  {
-    title: "Meme Making",
-    description: "Create sharp, tech-flavored memes with originality and timing.",
-    icon: "P2",
-    image: dogeImage,
-    prize: "TBA"
-  },
-  {
-    title: "Reels Making",
-    description: "Craft fast, engaging reels that capture TechLynx energy.",
-    icon: "P3",
-    image: reelsIcon,
-    prize: "TBA"
-  }
-];
+import { technicalEvents, nonTechnicalEvents, preEvents } from "../data/events";
 
 function Events() {
   return (
@@ -79,7 +22,9 @@ function Events() {
         <h3 className="font-display text-2xl font-semibold text-cyan-200">Technical Events</h3>
         <div className="mt-5 grid gap-6 md:grid-cols-2">
           {technicalEvents.map((event) => (
-            <EventCard key={event.title} event={event} />
+            <Link key={event.slug} to={`/events/${event.slug}`} className="block">
+              <EventCard event={event} />
+            </Link>
           ))}
         </div>
       </div>
@@ -88,7 +33,9 @@ function Events() {
         <h3 className="font-display text-2xl font-semibold text-violet-200">Non-Technical Events</h3>
         <div className="mt-5 grid gap-6 md:grid-cols-2">
           {nonTechnicalEvents.map((event) => (
-            <EventCard key={event.title} event={event} />
+            <Link key={event.slug} to={`/events/${event.slug}`} className="block">
+              <EventCard event={event} />
+            </Link>
           ))}
         </div>
       </div>
@@ -97,7 +44,9 @@ function Events() {
         <h3 className="font-display text-2xl font-semibold text-rose-200">Pre-Events</h3>
         <div className="mt-5 grid gap-6 md:grid-cols-3">
           {preEvents.map((event) => (
-            <EventCard key={event.title} event={event} />
+            <Link key={event.slug} to={`/events/${event.slug}`} className="block">
+              <EventCard event={event} />
+            </Link>
           ))}
         </div>
       </div>
