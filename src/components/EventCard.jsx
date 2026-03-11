@@ -8,7 +8,7 @@ function EventCard({ event }) {
   ];
 
   const iconContent = event.image ? (
-    <img src={event.image} alt={`${event.title} icon`} className="h-8 w-8 object-contain" />
+    <img src={event.image} alt={`${event.title} icon`} className="h-10 w-10 object-contain" />
   ) : (
     <span className="font-display text-lg font-semibold text-white">{event.icon}</span>
   );
@@ -21,12 +21,14 @@ function EventCard({ event }) {
     >
       {event.floaters?.length ? (
         <div className="pointer-events-none absolute inset-0 z-0">
-          {event.floaters.map((src, index) => {
+          {event.floaters
+            .filter((item) => item?.type === "image" && item?.src)
+            .map((item, index) => {
             const position = floatPositions[index % floatPositions.length];
             return (
               <motion.img
                 key={`${event.title}-float-${index}`}
-                src={src}
+                src={item.src}
                 alt=""
                 className="absolute h-12 w-12 rounded-xl object-cover opacity-70 shadow-[0_0_18px_rgba(34,211,238,0.35)]"
                 style={position}

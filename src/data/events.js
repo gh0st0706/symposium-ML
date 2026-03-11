@@ -19,6 +19,7 @@ export const technicalEvents = [
     venue: "Main Auditorium",
     icon: "T1",
     prize: "TBA",
+    image: lightBulbImage,
     floaters: [
       { type: "image", src: lightBulbImage },
       { type: "label", label: "Ideate" },
@@ -34,6 +35,7 @@ export const technicalEvents = [
     venue: "Lab Arena",
     icon: "T2",
     prize: "TBA",
+    image: laptopHandsImage,
     floaters: [
       { type: "image", src: laptopHandsImage },
       { type: "image", src: promptWordsImage },
@@ -52,6 +54,7 @@ export const nonTechnicalEvents = [
     venue: "Arena Zone",
     icon: "N1",
     prize: "TBA",
+    image: esportsFloatOne,
     floaters: [
       { type: "image", src: esportsFloatOne },
       { type: "image", src: esportsFloatTwo },
@@ -67,6 +70,7 @@ export const nonTechnicalEvents = [
     venue: "Open Stage",
     icon: "N2",
     prize: "TBA",
+    image: talentShowImage,
     floaters: [
       { type: "image", src: talentShowImage },
       { type: "label", label: "Stage" },
@@ -85,6 +89,7 @@ export const preEvents = [
     venue: "Online Submission",
     icon: "P1",
     prize: "TBA",
+    image: shortFilmImage,
     floaters: [
       { type: "image", src: shortFilmImage },
       { type: "label", label: "Storyboard" },
