@@ -32,15 +32,15 @@ function Hero() {
           transition={{ duration: 0.65, ease: "easeOut" }}
         >
           <p className="mb-4 inline-flex rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-1 text-xs uppercase tracking-[0.22em] text-cyan-200">
-            CSI College of Engineering | Cybersecurity &amp; AI &amp; ML Departments
+            CSI College of Engineering | AI &amp; ML Department
           </p>
           <h1 className="font-display text-4xl font-extrabold leading-tight text-white md:text-6xl xl:text-7xl">
             TechLynx 2026
-            <span className="mt-2 block bg-premium-gradient bg-clip-text text-transparent">Cybersecurity &amp; AI/ML Technical Symposium</span>
+            <span className="mt-2 block bg-premium-gradient bg-clip-text text-transparent">AI/ML Technical Symposium</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-slate-300 md:text-xl">
-            A flagship fest by the Cybersecurity and AI &amp; ML departments with technical and non-technical competitions,
-            immersive workshops, coding battles, and high-energy team challenges designed for modern engineers.
+            A flagship fest by the AI &amp; ML department with technical and non-technical competitions, immersive workshops,
+            coding battles, and high-energy team challenges designed for modern engineers.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link to="/register" className="gradient-btn">Register Now</Link>
@@ -63,7 +63,7 @@ function Hero() {
             </div>
             <div className="rounded-xl border border-white/15 bg-white/5 p-4">
               <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Department</p>
-              <p className="mt-2">Cybersecurity &amp; AI &amp; ML Departments</p>
+              <p className="mt-2">AI &amp; ML Department</p>
             </div>
           </div>
         </motion.div>
