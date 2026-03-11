@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 const contacts = [
   { label: "Symposium", value: "TechLynx 2026" },
-  { label: "Department", value: "Departments of Cybersecurity and AI & ML, CSI College of Engineering" },
+  { label: "Department", value: "AI & ML Department, CSI College of Engineering" },
   { label: "Email", value: "techlynx.aiml@csice.edu.in" },
   { label: "Coordinator", value: "+91 98765 43210" },
   { label: "Support", value: "+91 91234 56789" }

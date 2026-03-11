@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 
 const schedule = [
-  { time: "09:00 AM", title: "Inauguration | TechLynx Opening", note: "Welcome address by Cybersecurity & AI & ML Departments" },
+  { time: "09:00 AM", title: "Inauguration | TechLynx Opening", note: "Welcome address by AI & ML Department" },
   { time: "10:00 AM", title: "Technical Arena Opens", note: "IdeathonX + Prompting challenges begin" },
   { time: "12:30 PM", title: "Non-Technical Arena Opens", note: "eSports brackets and Talent Show rounds" },
   { time: "02:30 PM", title: "Pre-Event Highlights", note: "Short Film, Meme Making, Reels Making showcases" },

@@ -14,7 +14,7 @@ function Events() {
       >
         <h2 className="section-title">Event Arenas</h2>
         <p className="section-subtitle">
-          TechLynx blends cybersecurity and AI/ML competitions with high-energy non-technical tracks and creative pre-events.
+          TechLynx blends AI/ML competitions with high-energy non-technical tracks and creative pre-events.
         </p>
       </motion.div>
 

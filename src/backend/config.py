@@ -58,6 +58,6 @@ def get_settings() -> Settings:
         app_allowed_hosts=_get_str_list("APP_ALLOWED_HOSTS", ["localhost", "127.0.0.1"]),
         app_rate_limit_per_minute=_get_int("APP_RATE_LIMIT_PER_MINUTE", 120),
         app_event_name=_get_env("APP_EVENT_NAME", "TechLynx 2026 (Apr 1-2)"),
-        app_event_location=_get_env("APP_EVENT_LOCATION", "Departments of Cybersecurity and AI & ML"),
+        app_event_location=_get_env("APP_EVENT_LOCATION", "AI & ML Department"),
         app_event_start_at=_get_env("APP_EVENT_START_AT", "2026-04-01T09:00:00+05:30"),
     )
