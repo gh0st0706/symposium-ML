@@ -12,6 +12,9 @@ const initialState = {
   paymentStatus: "Pending"
 };
 
+const FORM_ENDPOINT =
+  "https://docs.google.com/forms/d/e/1FAIpQLSfwMt-Ej7Ox0s6n8SgiuYz9DOwGV1_dSjpfr1NYnZ8iwZhrlQ/formResponse";
+
 function Register() {
   const [formData, setFormData] = useState(initialState);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,41 +33,34 @@ function Register() {
     setIsSubmitting(true);
 
     const payload = {
-      fullName: formData.fullName.trim(),
-      collegeName: formData.collegeName.trim(),
-      department: formData.department.trim(),
-      email: formData.email.trim(),
-      phone: formData.phoneNumber.trim(),
-      eventSelected: formData.eventSelected,
-      paymentStatus: formData.paymentStatus,
-      submittedAt: new Date().toISOString()
+      "entry.2136022271": formData.fullName.trim(),
+      "entry.1235525554": formData.collegeName.trim(),
+      "entry.2283655": formData.department.trim(),
+      "entry.1732981227": formData.email.trim(),
+      "entry.230629987": formData.phoneNumber.trim(),
+      "entry.916226209": formData.eventSelected,
+      "entry.1630894865": formData.paymentStatus
     };
 
     try {
-      const apiResponse = await fetch("/api/register", {
+      await fetch(FORM_ENDPOINT, {
         method: "POST",
+        mode: "no-cors",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/x-www-form-urlencoded"
         },
-        body: JSON.stringify(payload)
+        body: new URLSearchParams(payload).toString()
       });
 
-      const result = await apiResponse.json().catch(() => ({}));
-
-      if (!apiResponse.ok || result.success === false) {
-        const detail = result.error ? ` (${result.error})` : "";
-        throw new Error(`${result.message || "Registration could not be saved to Google Sheets."}${detail}`);
-      }
-
       setStatusType("success");
-      setStatusMessage("Registration submitted. Your data has been saved to Google Sheets.");
+      setStatusMessage("Registration submitted. Your data has been saved to Google Forms.");
       setFormData(initialState);
     } catch (error) {
       setStatusType("error");
       const message = error?.message || "Submission failed. Please try again in a few moments.";
       setStatusMessage(
         message.includes("Failed to fetch")
-          ? "Registration API unreachable. Check Vercel deployment and environment variables."
+          ? "Registration submission failed. Please check your connection and try again."
           : message
       );
     } finally {
