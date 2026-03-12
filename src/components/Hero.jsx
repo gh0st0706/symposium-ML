@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import heroVideo from "../assets/techlynx-reel.mp4";
 import CountdownTimer from "./CountdownTimer";
 
 const particleConfig = [
@@ -14,7 +15,21 @@ const particleConfig = [
 function Hero() {
   return (
     <section className="relative flex min-h-screen items-center overflow-hidden pt-24">
-      <div className="absolute inset-0 -z-10 bg-hero-grid bg-[size:48px_48px] opacity-15" />
+      <div className="absolute inset-0 -z-20">
+        <video
+          className="h-full w-full object-cover opacity-35"
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/70 to-ink/95" />
+      </div>
+      <div className="absolute inset-0 -z-10 bg-hero-grid bg-[size:48px_48px] opacity-20" />
       {particleConfig.map((particle) => (
         <motion.span
           key={`${particle.top}-${particle.left}`}
@@ -31,9 +46,14 @@ function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut" }}
         >
-          <p className="mb-4 inline-flex rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-1 text-xs uppercase tracking-[0.22em] text-cyan-200">
-            CSI College of Engineering | AI &amp; ML Department
-          </p>
+          <div className="mb-4 flex flex-wrap gap-2">
+            <p className="inline-flex rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-1 text-xs uppercase tracking-[0.22em] text-cyan-200">
+              CSI College of Engineering | AI &amp; ML Department
+            </p>
+            <p className="inline-flex rounded-full border border-violet-300/40 bg-violet-300/10 px-4 py-1 text-xs uppercase tracking-[0.22em] text-violet-200">
+              Presented by Skynetics Students Association
+            </p>
+          </div>
           <h1 className="font-display text-4xl font-extrabold leading-tight text-white md:text-6xl xl:text-7xl">
             TechLynx 2026
             <span className="mt-2 block bg-premium-gradient bg-clip-text text-transparent">AI/ML Technical Symposium</span>

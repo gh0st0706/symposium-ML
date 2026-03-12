@@ -31,8 +31,9 @@ function About() {
         <div>
           <h2 className="section-title">About The Symposium</h2>
           <p className="section-subtitle">
-            TechLynx is the annual AI &amp; ML department symposium at CSI College of Engineering, crafted to feel like a top-tier
-            IIT event with elite production quality, competition energy, and cross-domain participation.
+            TechLynx is the annual AI &amp; ML department symposium at CSI College of Engineering, presented by the Skynetics
+            Students Association and crafted to feel like a top-tier IIT event with elite production quality, competition energy,
+            and cross-domain participation.
           </p>
         </div>
 
