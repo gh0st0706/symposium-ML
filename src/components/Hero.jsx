@@ -89,11 +89,11 @@ function Hero() {
   }, []);
 
   return (
-    <section className="relative isolate flex min-h-screen items-center overflow-hidden pt-24">
-      <div className="absolute inset-x-14 inset-y-20 z-0 pointer-events-none overflow-hidden rounded-[44px] border border-white/8 shadow-[0_20px_60px_rgba(5,8,22,0.5)] sm:inset-x-16 sm:inset-y-24 lg:inset-x-20 lg:inset-y-28">
+    <section className="relative isolate flex min-h-screen items-center overflow-hidden pt-28 sm:pt-32">
+      <div className="absolute left-14 right-14 top-28 bottom-20 z-0 pointer-events-none overflow-hidden rounded-[48px] border border-white/6 shadow-[0_18px_52px_rgba(5,8,22,0.45)] sm:left-16 sm:right-16 sm:top-32 sm:bottom-24 lg:left-20 lg:right-20 lg:top-36 lg:bottom-28">
         <video
           ref={videoRef}
-          className="h-full w-full object-cover opacity-28 saturate-90"
+          className="h-full w-full object-cover opacity-22 saturate-90"
           autoPlay
           muted
           loop={false}
@@ -103,10 +103,11 @@ function Hero() {
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/80 via-ink/55 to-ink/80" />
-        <div className="absolute inset-0 bg-ink/15" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/80" />
+        <div className="absolute inset-y-0 left-0 w-[58%] bg-gradient-to-r from-ink/80 via-ink/45 to-transparent" />
+        <div className="absolute inset-0 bg-ink/12" />
       </div>
-      <div className="absolute inset-0 z-10 bg-hero-grid bg-[size:48px_48px] opacity-20" />
+      <div className="absolute inset-0 z-10 bg-hero-grid bg-[size:48px_48px] opacity-10" />
       {particleConfig.map((particle) => (
         <motion.span
           key={`${particle.top}-${particle.left}`}
@@ -119,10 +120,12 @@ function Hero() {
 
       <div className="section-wrap relative z-20 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
         <motion.div
+          className="relative"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.65, ease: "easeOut" }}
         >
+          <div className="absolute -inset-6 -z-10 rounded-[28px] bg-ink/55 blur-[1px]" />
           <div className="mb-4 flex flex-wrap gap-2">
             <p className="inline-flex rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-1 text-xs uppercase tracking-[0.22em] text-cyan-200">
               CSI College of Engineering | AI &amp; ML Department
@@ -149,7 +152,7 @@ function Hero() {
           initial={{ opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="glass-panel rounded-3xl p-6"
+          className="glass-panel rounded-3xl border-white/10 bg-white/4 p-5 shadow-[0_12px_30px_rgba(2,8,23,0.45)]"
         >
           <p className="text-xs uppercase tracking-[0.25em] text-cyan-300">Symposium Countdown</p>
           <CountdownTimer targetDate="2026-04-01T09:00:00+05:30" />
