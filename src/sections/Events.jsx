@@ -14,7 +14,7 @@ function Events() {
       >
         <h2 className="section-title">Event Arenas</h2>
         <p className="section-subtitle">
-          TechLynx blends AI/ML competitions with high-energy non-technical tracks and creative pre-events.
+          Curated arenas across technical, non-technical, and pre-event tracks built to reward depth, originality, and execution.
         </p>
       </motion.div>
 
@@ -30,7 +30,7 @@ function Events() {
       </div>
 
       <div className="mt-12">
-        <h3 className="font-display text-2xl font-semibold text-violet-200">Non-Technical Events</h3>
+        <h3 className="font-display text-2xl font-semibold text-amber-200">Non-Technical Events</h3>
         <div className="mt-5 grid gap-6 md:grid-cols-2">
           {nonTechnicalEvents.map((event) => (
             <Link key={event.slug} to={`/events/${event.slug}`} className="block">

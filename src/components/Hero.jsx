@@ -134,13 +134,14 @@ function Hero() {
               Presented by Skynetics Students Association
             </p>
           </div>
-          <h1 className="font-display text-4xl font-extrabold leading-tight text-white md:text-6xl xl:text-7xl">
+          <h1 className="font-display text-4xl font-semibold leading-tight text-white md:text-6xl xl:text-7xl">
             TechLynx 2026
-            <span className="mt-2 block bg-premium-gradient bg-clip-text text-transparent">AI/ML Technical Symposium</span>
+            <span className="mt-2 block bg-premium-gradient bg-clip-text text-transparent">National AI/ML Technical Symposium</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-slate-300 md:text-xl">
-            A flagship fest by the AI &amp; ML department with technical and non-technical competitions, immersive workshops,
-            coding battles, and high-energy team challenges designed for modern engineers.
+            A national-level symposium by the Department of AI &amp; ML at CSI College of Engineering, presented for high-caliber
+            builders, researchers, and creators. Expect rigorous challenges, applied research showcases, and industry-grade
+            problem statements.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-4">
             <Link to="/register" className="gradient-btn">Register Now</Link>

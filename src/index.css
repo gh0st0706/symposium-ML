@@ -13,10 +13,10 @@
       "Helvetica Neue", Arial, sans-serif;
     font-weight: 300;
     background-image:
-      radial-gradient(circle at 10% 10%, rgba(34, 211, 238, 0.14), transparent 35%),
-      radial-gradient(circle at 90% 15%, rgba(139, 92, 246, 0.18), transparent 40%),
-      radial-gradient(circle at 60% 90%, rgba(59, 130, 246, 0.18), transparent 35%),
-      linear-gradient(140deg, #040612 0%, #081327 50%, #050a1c 100%);
+      radial-gradient(circle at 10% 10%, rgba(34, 211, 238, 0.12), transparent 35%),
+      radial-gradient(circle at 88% 12%, rgba(251, 146, 60, 0.16), transparent 42%),
+      radial-gradient(circle at 60% 90%, rgba(96, 165, 250, 0.16), transparent 35%),
+      linear-gradient(140deg, #040612 0%, #0a1730 52%, #070d1f 100%);
     min-height: 100vh;
   }
 

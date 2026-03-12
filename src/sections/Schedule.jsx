@@ -38,7 +38,9 @@ function Schedule() {
         transition={{ duration: 0.55 }}
       >
         <h2 className="section-title">Event Timeline</h2>
-        <p className="section-subtitle">A premium two-day flow engineered for technical depth, stage energy, and audience engagement.</p>
+        <p className="section-subtitle">
+          A tightly orchestrated two-day flow designed for technical depth, showcase energy, and audience engagement.
+        </p>
       </motion.div>
 
       <motion.div

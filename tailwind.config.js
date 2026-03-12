@@ -42,7 +42,7 @@ export default {
       },
       backgroundImage: {
         "hero-grid": "linear-gradient(rgba(148,163,184,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.09) 1px, transparent 1px)",
-        "premium-gradient": "linear-gradient(120deg,#22d3ee 0%,#3b82f6 50%,#8b5cf6 100%)"
+        "premium-gradient": "linear-gradient(120deg,#38bdf8 0%,#60a5fa 45%,#f59e0b 100%)"
       }
     }
   },
