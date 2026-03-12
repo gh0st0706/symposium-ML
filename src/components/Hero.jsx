@@ -15,55 +15,96 @@ const particleConfig = [
 
 function Hero() {
   const videoRef = useRef(null);
+  const introPlayedRef = useRef(false);
+  const introTimeoutRef = useRef(null);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const tryPlay = () => {
+    const introDuration = 2;
+
+    const startIntro = () => {
+      if (introPlayedRef.current) return;
+      introPlayedRef.current = true;
+
+      try {
+        video.currentTime = 0;
+      } catch {
+        // ignore seek errors for not-yet-loaded video
+      }
+
+      const onTimeUpdate = () => {
+        if (video.currentTime >= introDuration) {
+          video.pause();
+          video.removeEventListener("timeupdate", onTimeUpdate);
+        }
+      };
+
+      video.addEventListener("timeupdate", onTimeUpdate);
+
+      if (introTimeoutRef.current) {
+        clearTimeout(introTimeoutRef.current);
+      }
+      introTimeoutRef.current = window.setTimeout(() => {
+        video.pause();
+        video.removeEventListener("timeupdate", onTimeUpdate);
+      }, (introDuration + 0.2) * 1000);
+    };
+
+    const tryPlayIntro = () => {
+      if (introPlayedRef.current) return;
       video.muted = true;
       video.playsInline = true;
       const playPromise = video.play();
-      if (playPromise && typeof playPromise.catch === "function") {
-        playPromise.catch(() => {});
+      if (playPromise && typeof playPromise.then === "function") {
+        playPromise.then(startIntro).catch(() => {
+          introPlayedRef.current = false;
+        });
+      } else {
+        startIntro();
       }
     };
 
-    tryPlay();
-
     const onVisibility = () => {
-      if (!document.hidden) tryPlay();
+      if (!document.hidden) tryPlayIntro();
     };
 
-    video.addEventListener("loadeddata", tryPlay);
+    tryPlayIntro();
+
+    video.addEventListener("loadeddata", tryPlayIntro);
     document.addEventListener("visibilitychange", onVisibility);
-    document.addEventListener("pointerdown", tryPlay, { once: true });
-    document.addEventListener("touchstart", tryPlay, { once: true });
+    document.addEventListener("pointerdown", tryPlayIntro, { once: true });
+    document.addEventListener("touchstart", tryPlayIntro, { once: true });
 
     return () => {
-      video.removeEventListener("loadeddata", tryPlay);
+      if (introTimeoutRef.current) {
+        clearTimeout(introTimeoutRef.current);
+      }
+      video.removeEventListener("loadeddata", tryPlayIntro);
       document.removeEventListener("visibilitychange", onVisibility);
-      document.removeEventListener("pointerdown", tryPlay);
-      document.removeEventListener("touchstart", tryPlay);
+      document.removeEventListener("pointerdown", tryPlayIntro);
+      document.removeEventListener("touchstart", tryPlayIntro);
     };
   }, []);
 
   return (
     <section className="relative isolate flex min-h-screen items-center overflow-hidden pt-24">
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      <div className="absolute inset-6 z-0 pointer-events-none overflow-hidden rounded-[32px] border border-white/10 shadow-[0_30px_90px_rgba(5,8,22,0.7)] sm:inset-8 lg:inset-10">
         <video
           ref={videoRef}
-          className="h-full w-full object-cover opacity-45"
+          className="h-full w-full object-cover opacity-35 saturate-90"
           autoPlay
           muted
-          loop
+          loop={false}
           playsInline
           preload="auto"
           aria-hidden="true"
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/65 to-ink/90" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/70 to-ink/95" />
+        <div className="absolute inset-0 bg-ink/30" />
       </div>
       <div className="absolute inset-0 z-10 bg-hero-grid bg-[size:48px_48px] opacity-20" />
       {particleConfig.map((particle) => (

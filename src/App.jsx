@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import IntroLoader from "./components/IntroLoader";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -9,6 +10,7 @@ import EventDetail from "./pages/EventDetail";
 
 function App() {
   const location = useLocation();
+  const [introPhase, setIntroPhase] = useState("enter");
 
   useEffect(() => {
     if (!location.hash) return;
@@ -24,8 +26,34 @@ function App() {
     window.scrollTo({ top: targetTop, behavior: "smooth" });
   }, [location.hash, location.pathname]);
 
+  useEffect(() => {
+    const exitTimer = window.setTimeout(() => {
+      setIntroPhase("exit");
+    }, 2000);
+
+    return () => window.clearTimeout(exitTimer);
+  }, []);
+
+  useEffect(() => {
+    if (introPhase !== "exit") return undefined;
+
+    const doneTimer = window.setTimeout(() => {
+      setIntroPhase("done");
+    }, 650);
+
+    return () => window.clearTimeout(doneTimer);
+  }, [introPhase]);
+
+  useEffect(() => {
+    document.body.style.overflow = introPhase === "done" ? "" : "hidden";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [introPhase]);
+
   return (
     <div className="relative min-h-screen overflow-x-hidden">
+      {introPhase !== "done" ? <IntroLoader phase={introPhase} /> : null}
       <Navbar />
       <AnimatePresence mode="wait">
         <motion.div
