@@ -11,8 +11,30 @@ export default {
         violet: "#8b5cf6"
       },
       fontFamily: {
-        sans: ["Inter", "Segoe UI", "sans-serif"],
-        display: ["Sora", "Inter", "sans-serif"]
+        sans: [
+          "SF Pro Text",
+          "SF Pro Display",
+          "SF Pro Rounded",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif"
+        ],
+        display: [
+          "SF Pro Display",
+          "SF Pro Text",
+          "SF Pro Rounded",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "Helvetica Neue",
+          "Arial",
+          "sans-serif"
+        ]
       },
       boxShadow: {
         glow: "0 0 0 1px rgba(34,211,238,0.3), 0 18px 45px rgba(6, 26, 55, 0.55)",

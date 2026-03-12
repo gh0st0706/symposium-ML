@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -11,6 +9,9 @@
 
   body {
     @apply bg-ink text-slate-100 antialiased;
+    font-family: "SF Pro Text", "SF Pro Display", "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+      "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
     background-image:
       radial-gradient(circle at 10% 10%, rgba(34, 211, 238, 0.14), transparent 35%),
       radial-gradient(circle at 90% 15%, rgba(139, 92, 246, 0.18), transparent 40%),
@@ -71,7 +72,8 @@
   .intro-loader__label {
     position: relative;
     z-index: 1;
-    font-family: "Sora", "Inter", sans-serif;
+    font-family: inherit;
+    font-weight: 400;
     font-size: clamp(1rem, 1.4vw, 1.2rem);
     letter-spacing: 0.4em;
     text-transform: uppercase;
