@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import heroVideo from "../assets/techlynx-reel.mp4";
 import CountdownTimer from "./CountdownTimer";
@@ -13,34 +14,69 @@ const particleConfig = [
 ];
 
 function Hero() {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const tryPlay = () => {
+      video.muted = true;
+      video.playsInline = true;
+      const playPromise = video.play();
+      if (playPromise && typeof playPromise.catch === "function") {
+        playPromise.catch(() => {});
+      }
+    };
+
+    tryPlay();
+
+    const onVisibility = () => {
+      if (!document.hidden) tryPlay();
+    };
+
+    video.addEventListener("loadeddata", tryPlay);
+    document.addEventListener("visibilitychange", onVisibility);
+    document.addEventListener("pointerdown", tryPlay, { once: true });
+    document.addEventListener("touchstart", tryPlay, { once: true });
+
+    return () => {
+      video.removeEventListener("loadeddata", tryPlay);
+      document.removeEventListener("visibilitychange", onVisibility);
+      document.removeEventListener("pointerdown", tryPlay);
+      document.removeEventListener("touchstart", tryPlay);
+    };
+  }, []);
+
   return (
-    <section className="relative flex min-h-screen items-center overflow-hidden pt-24">
-      <div className="absolute inset-0 -z-20">
+    <section className="relative isolate flex min-h-screen items-center overflow-hidden pt-24">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <video
-          className="h-full w-full object-cover opacity-35"
+          ref={videoRef}
+          className="h-full w-full object-cover opacity-45"
           autoPlay
           muted
           loop
           playsInline
-          preload="metadata"
+          preload="auto"
           aria-hidden="true"
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/70 to-ink/95" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/65 to-ink/90" />
       </div>
-      <div className="absolute inset-0 -z-10 bg-hero-grid bg-[size:48px_48px] opacity-20" />
+      <div className="absolute inset-0 z-10 bg-hero-grid bg-[size:48px_48px] opacity-20" />
       {particleConfig.map((particle) => (
         <motion.span
           key={`${particle.top}-${particle.left}`}
-          className="absolute h-2 w-2 rounded-full bg-cyan-300/70 shadow-[0_0_20px_rgba(34,211,238,0.9)]"
+          className="absolute z-20 h-2 w-2 rounded-full bg-cyan-300/70 shadow-[0_0_20px_rgba(34,211,238,0.9)]"
           style={{ top: particle.top, left: particle.left }}
           animate={{ y: [0, -22, 0], opacity: [0.2, 1, 0.2] }}
           transition={{ duration: 5.2, repeat: Infinity, delay: particle.delay }}
         />
       ))}
 
-      <div className="section-wrap grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+      <div className="section-wrap relative z-20 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -79,7 +115,7 @@ function Hero() {
           <div className="mt-8 grid grid-cols-2 gap-4 text-sm text-slate-300">
             <div className="rounded-xl border border-white/15 bg-white/5 p-4">
               <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Venue</p>
-              <p className="mt-2">CSI College of Engineering</p>
+              <p className="mt-2">Department of AIML</p>
             </div>
             <div className="rounded-xl border border-white/15 bg-white/5 p-4">
               <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Department</p>
