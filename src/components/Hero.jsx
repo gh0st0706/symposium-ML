@@ -90,7 +90,7 @@ function Hero() {
 
   return (
     <section className="relative isolate flex min-h-screen items-center overflow-hidden pt-24">
-      <div className="absolute inset-10 z-0 pointer-events-none overflow-hidden rounded-[40px] border border-white/8 shadow-[0_24px_70px_rgba(5,8,22,0.55)] sm:inset-12 lg:inset-14">
+      <div className="absolute inset-x-14 inset-y-20 z-0 pointer-events-none overflow-hidden rounded-[44px] border border-white/8 shadow-[0_20px_60px_rgba(5,8,22,0.5)] sm:inset-x-16 sm:inset-y-24 lg:inset-x-20 lg:inset-y-28">
         <video
           ref={videoRef}
           className="h-full w-full object-cover opacity-28 saturate-90"
