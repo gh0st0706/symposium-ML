@@ -18,6 +18,10 @@
       linear-gradient(140deg, #040612 0%, #081327 50%, #050a1c 100%);
     min-height: 100vh;
   }
+
+  section[id] {
+    scroll-margin-top: 96px;
+  }
 }
 
 @layer components {

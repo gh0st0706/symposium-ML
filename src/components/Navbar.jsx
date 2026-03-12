@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const links = [
-  { label: "About", href: "#about" },
-  { label: "Events", href: "#events" },
-  { label: "Schedule", href: "#schedule" },
-  { label: "Contact", href: "#contact" }
+  { label: "About", hash: "#about" },
+  { label: "Events", hash: "#events" },
+  { label: "Schedule", hash: "#schedule" },
+  { label: "Contact", hash: "#contact" }
 ];
 
 function Navbar() {
@@ -31,10 +31,14 @@ function Navbar() {
         </Link>
         <div className="hidden items-center gap-8 md:flex">
           {links.map((item) => (
-            <a key={item.label} href={item.href} className="group relative text-sm font-medium text-slate-200">
+            <Link
+              key={item.label}
+              to={{ pathname: "/", hash: item.hash }}
+              className="group relative text-sm font-medium text-slate-200"
+            >
               {item.label}
               <span className="absolute -bottom-1 left-0 h-0.5 w-full origin-left scale-x-0 bg-cyan-300 transition-transform duration-300 group-hover:scale-x-100" />
-            </a>
+            </Link>
           ))}
         </div>
         <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.96 }}>

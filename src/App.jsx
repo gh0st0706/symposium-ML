@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from "framer-motion";
+import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -8,6 +9,20 @@ import EventDetail from "./pages/EventDetail";
 
 function App() {
   const location = useLocation();
+
+  useEffect(() => {
+    if (!location.hash) return;
+
+    const targetId = location.hash.replace("#", "");
+    const target = document.getElementById(targetId);
+    if (!target) return;
+
+    const header = document.querySelector("header");
+    const headerOffset = header ? header.getBoundingClientRect().height + 12 : 96;
+    const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+
+    window.scrollTo({ top: targetTop, behavior: "smooth" });
+  }, [location.hash, location.pathname]);
 
   return (
     <div className="relative min-h-screen overflow-x-hidden">
