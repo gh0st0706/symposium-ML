@@ -90,7 +90,7 @@ function Hero() {
 
   return (
     <section className="relative isolate flex min-h-screen items-center overflow-hidden pt-28 sm:pt-32">
-      <div className="absolute left-14 right-14 top-28 bottom-20 z-0 pointer-events-none overflow-hidden rounded-[48px] border border-white/6 shadow-[0_18px_52px_rgba(5,8,22,0.45)] sm:left-16 sm:right-16 sm:top-32 sm:bottom-24 lg:left-20 lg:right-20 lg:top-36 lg:bottom-28">
+      <div className="absolute inset-0 z-0 pointer-events-none">
         <video
           ref={videoRef}
           className="h-full w-full object-cover opacity-22 saturate-90"
@@ -103,9 +103,9 @@ function Hero() {
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/55 to-ink/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/55 to-ink/75" />
         <div className="absolute inset-y-0 left-0 w-[58%] bg-gradient-to-r from-ink/80 via-ink/45 to-transparent" />
-        <div className="absolute inset-0 bg-ink/12" />
+        <div className="absolute inset-0 bg-ink/18" />
       </div>
       <div className="absolute inset-0 z-10 bg-hero-grid bg-[size:48px_48px] opacity-10" />
       {particleConfig.map((particle) => (

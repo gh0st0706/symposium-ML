@@ -22,10 +22,10 @@ function Navbar() {
   return (
     <header
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "border-b border-white/10 bg-ink/85 backdrop-blur-xl" : "bg-transparent"
+        scrolled ? "border-b border-white/10 bg-transparent" : "bg-transparent"
       }`}
     >
-      <nav className="section-wrap flex items-center justify-between py-4">
+      <nav className="section-wrap flex items-center justify-between py-3">
         <Link to="/" className="font-display text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300 md:text-base">
           TechLynx
         </Link>
