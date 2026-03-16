@@ -100,7 +100,7 @@ function Hero() {
       <div className="absolute inset-0 z-0 pointer-events-none">
         <video
           ref={videoRef}
-          className="h-full w-full object-cover saturate-90 transition-opacity duration-1000 ease-out"
+          className="hero-video h-full w-full object-cover saturate-90 transition-opacity duration-1000 ease-out"
           style={{ opacity: blendOut ? 0.06 : 0.22 }}
           autoPlay
           muted
@@ -114,6 +114,7 @@ function Hero() {
         <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/55 to-ink/75" />
         <div className="absolute inset-y-0 left-0 w-[58%] bg-gradient-to-r from-ink/80 via-ink/45 to-transparent" />
         <div className="absolute inset-0 bg-ink/18" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink/90 via-ink/55 to-transparent" />
       </div>
       <div className="absolute inset-0 z-10 bg-hero-grid bg-[size:48px_48px] opacity-10" />
       {particleConfig.map((particle) => (
