@@ -1,8 +1,7 @@
-import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import heroVideo from "../assets/techlynx-reel.mp4";
-import CountdownTimer from "./CountdownTimer";
 
 const particleConfig = [
   { top: "12%", left: "10%", delay: 0.1 },
@@ -13,109 +12,80 @@ const particleConfig = [
   { top: "38%", left: "30%", delay: 1.4 }
 ];
 
+const heroPanels = [
+  {
+    title: "Event Categories",
+    items: ["AI/ML Challenges", "Product Sprints", "Creative Tech Arenas"]
+  },
+  {
+    title: "Important Dates",
+    items: ["April 1-2, 2026", "Registration closes March 28", "Finalists announced March 30"]
+  },
+  {
+    title: "Featured Speakers",
+    items: ["Industry AI leads", "Research faculty", "Startup founders"]
+  }
+];
+
 function Hero() {
   const videoRef = useRef(null);
-  const introPlayedRef = useRef(false);
-  const introTimeoutRef = useRef(null);
-  const [blendOut, setBlendOut] = useState(false);
+  const { scrollY } = useScroll();
+  const videoY = useTransform(scrollY, [0, 800], [0, 120]);
+  const contentY = useTransform(scrollY, [0, 800], [0, -18]);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    const introDuration = 2;
-    const blendOutDuration = 0.7;
-
-    const startIntro = () => {
-      if (introPlayedRef.current) return;
-      introPlayedRef.current = true;
-      setBlendOut(false);
-
-      try {
-        video.currentTime = 0;
-      } catch {
-        // ignore seek errors for not-yet-loaded video
-      }
-
-      const onTimeUpdate = () => {
-        if (video.currentTime >= introDuration - blendOutDuration) {
-          setBlendOut(true);
-        }
-        if (video.currentTime >= introDuration) {
-          video.pause();
-          video.removeEventListener("timeupdate", onTimeUpdate);
-        }
-      };
-
-      video.addEventListener("timeupdate", onTimeUpdate);
-
-      if (introTimeoutRef.current) {
-        clearTimeout(introTimeoutRef.current);
-      }
-      introTimeoutRef.current = window.setTimeout(() => {
-        setBlendOut(true);
-        video.pause();
-        video.removeEventListener("timeupdate", onTimeUpdate);
-      }, (introDuration + 0.2) * 1000);
-    };
-
-    const tryPlayIntro = () => {
-      if (introPlayedRef.current) return;
+    const tryPlayLoop = () => {
       video.muted = true;
       video.playsInline = true;
+      video.loop = true;
       const playPromise = video.play();
       if (playPromise && typeof playPromise.then === "function") {
-        playPromise.then(startIntro).catch(() => {
-          introPlayedRef.current = false;
-        });
-      } else {
-        startIntro();
+        playPromise.catch(() => {});
       }
     };
 
     const onVisibility = () => {
-      if (!document.hidden) tryPlayIntro();
+      if (!document.hidden) tryPlayLoop();
     };
 
-    tryPlayIntro();
+    tryPlayLoop();
 
-    video.addEventListener("loadeddata", tryPlayIntro);
+    video.addEventListener("loadeddata", tryPlayLoop);
     document.addEventListener("visibilitychange", onVisibility);
-    document.addEventListener("pointerdown", tryPlayIntro, { once: true });
-    document.addEventListener("touchstart", tryPlayIntro, { once: true });
+    document.addEventListener("pointerdown", tryPlayLoop, { once: true });
+    document.addEventListener("touchstart", tryPlayLoop, { once: true });
 
     return () => {
-      if (introTimeoutRef.current) {
-        clearTimeout(introTimeoutRef.current);
-      }
-      video.removeEventListener("loadeddata", tryPlayIntro);
+      video.removeEventListener("loadeddata", tryPlayLoop);
       document.removeEventListener("visibilitychange", onVisibility);
-      document.removeEventListener("pointerdown", tryPlayIntro);
-      document.removeEventListener("touchstart", tryPlayIntro);
+      document.removeEventListener("pointerdown", tryPlayLoop);
+      document.removeEventListener("touchstart", tryPlayLoop);
     };
   }, []);
 
   return (
-    <section className="relative isolate flex min-h-screen items-center overflow-hidden pt-28 sm:pt-32">
-      <div className="absolute inset-0 z-0 pointer-events-none">
+    <section className="relative isolate flex min-h-screen items-center justify-center overflow-hidden pt-24 pb-16 sm:pt-28">
+      <motion.div className="absolute inset-0 z-0 pointer-events-none" style={{ y: videoY }}>
         <video
           ref={videoRef}
-          className="hero-video h-full w-full object-cover saturate-90 transition-opacity duration-1000 ease-out"
-          style={{ opacity: blendOut ? 0.06 : 0.22 }}
+          className="hero-video h-full w-full object-cover"
           autoPlay
           muted
-          loop={false}
+          loop
           playsInline
           preload="auto"
           aria-hidden="true"
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-gradient-to-r from-ink/90 via-ink/55 to-ink/75" />
-        <div className="absolute inset-y-0 left-0 w-[58%] bg-gradient-to-r from-ink/80 via-ink/45 to-transparent" />
-        <div className="absolute inset-0 bg-ink/18" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink/90 via-ink/55 to-transparent" />
-      </div>
+        <div className="absolute inset-0 bg-gradient-to-r from-ink/95 via-ink/70 to-ink/90" />
+        <div className="absolute inset-y-0 left-0 w-[55%] bg-gradient-to-r from-ink/90 via-ink/60 to-transparent" />
+        <div className="absolute inset-0 bg-ink/20" />
+        <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-ink/95 via-ink/70 to-transparent" />
+      </motion.div>
       <div className="absolute inset-0 z-10 bg-hero-grid bg-[size:48px_48px] opacity-10" />
       {particleConfig.map((particle) => (
         <motion.span
@@ -127,7 +97,10 @@ function Hero() {
         />
       ))}
 
-      <div className="section-wrap relative z-20 grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+      <motion.div
+        className="section-wrap relative z-20 grid items-center gap-12 text-center lg:grid-cols-[1.1fr_0.9fr] lg:text-left"
+        style={{ y: contentY }}
+      >
         <motion.div
           className="relative"
           initial={{ opacity: 0, y: 30 }}
@@ -152,32 +125,36 @@ function Hero() {
             builders, researchers, and creators. Expect rigorous challenges, applied research showcases, and industry-grade
             problem statements.
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-4">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
             <Link to="/register" className="gradient-btn">Register Now</Link>
-            <p className="rounded-full border border-violet-300/30 px-4 py-2 text-sm text-violet-200">Date: April 1-2, 2026</p>
+            <Link to={{ pathname: "/", hash: "#events" }} className="ghost-btn">View Events</Link>
           </div>
+          <p className="mt-5 text-sm uppercase tracking-[0.26em] text-slate-300">
+            April 1-2, 2026 - CSI College of Engineering
+          </p>
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 26 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.15 }}
-          className="glass-panel rounded-3xl border-white/10 bg-white/4 p-5 shadow-[0_12px_30px_rgba(2,8,23,0.45)]"
+          className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1"
         >
-          <p className="text-xs uppercase tracking-[0.25em] text-cyan-300">Symposium Countdown</p>
-          <CountdownTimer targetDate="2026-04-01T09:00:00+05:30" />
-          <div className="mt-8 grid grid-cols-2 gap-4 text-sm text-slate-300">
-            <div className="rounded-xl border border-white/15 bg-white/5 p-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Venue</p>
-              <p className="mt-2">Department of AIML</p>
-            </div>
-            <div className="rounded-xl border border-white/15 bg-white/5 p-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-cyan-300">Department</p>
-              <p className="mt-2">AI &amp; ML Department</p>
-            </div>
-          </div>
+          {heroPanels.map((panel) => (
+            <article key={panel.title} className="hero-glass p-5 text-left">
+              <p className="text-xs uppercase tracking-[0.25em] text-cyan-300">{panel.title}</p>
+              <ul className="mt-4 space-y-2 text-sm text-slate-200">
+                {panel.items.map((item) => (
+                  <li key={item} className="flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 rounded-full bg-cyan-300 shadow-[0_0_12px_rgba(34,211,238,0.9)]" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </article>
+          ))}
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

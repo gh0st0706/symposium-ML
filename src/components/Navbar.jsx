@@ -23,7 +23,9 @@ function Navbar() {
   return (
     <header
       className={`fixed left-0 right-0 top-0 z-50 transition-all duration-300 ${
-        scrolled ? "border-b border-white/10 bg-transparent" : "bg-transparent"
+        scrolled
+          ? "border-b border-white/10 bg-ink/80 backdrop-blur-xl shadow-[0_12px_30px_rgba(2,8,23,0.6)]"
+          : "bg-transparent"
       }`}
     >
       <nav className="section-wrap flex items-center justify-between py-3">
