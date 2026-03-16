@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import heroVideo from "../assets/techlynx-reel.mp4";
 import CountdownTimer from "./CountdownTimer";
@@ -17,16 +17,19 @@ function Hero() {
   const videoRef = useRef(null);
   const introPlayedRef = useRef(false);
   const introTimeoutRef = useRef(null);
+  const [blendOut, setBlendOut] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
     const introDuration = 2;
+    const blendOutDuration = 0.7;
 
     const startIntro = () => {
       if (introPlayedRef.current) return;
       introPlayedRef.current = true;
+      setBlendOut(false);
 
       try {
         video.currentTime = 0;
@@ -35,6 +38,9 @@ function Hero() {
       }
 
       const onTimeUpdate = () => {
+        if (video.currentTime >= introDuration - blendOutDuration) {
+          setBlendOut(true);
+        }
         if (video.currentTime >= introDuration) {
           video.pause();
           video.removeEventListener("timeupdate", onTimeUpdate);
@@ -47,6 +53,7 @@ function Hero() {
         clearTimeout(introTimeoutRef.current);
       }
       introTimeoutRef.current = window.setTimeout(() => {
+        setBlendOut(true);
         video.pause();
         video.removeEventListener("timeupdate", onTimeUpdate);
       }, (introDuration + 0.2) * 1000);
@@ -93,7 +100,8 @@ function Hero() {
       <div className="absolute inset-0 z-0 pointer-events-none">
         <video
           ref={videoRef}
-          className="h-full w-full object-cover opacity-22 saturate-90"
+          className="h-full w-full object-cover saturate-90 transition-opacity duration-1000 ease-out"
+          style={{ opacity: blendOut ? 0.06 : 0.22 }}
           autoPlay
           muted
           loop={false}

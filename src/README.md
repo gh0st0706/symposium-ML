@@ -7,7 +7,7 @@ Premium React + Tailwind + Framer Motion website for TechLynx at CSI College of 
 - Tailwind CSS
 - Framer Motion
 - Vercel Serverless API (`/api/register`)
-- Google Sheets API (service account)
+
 
 ## Routes
 - `/` Home
