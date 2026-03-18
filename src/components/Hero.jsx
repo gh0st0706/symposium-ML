@@ -118,7 +118,7 @@ function Hero() {
           </div>
           <h1 className="font-display text-4xl font-semibold leading-tight text-white md:text-6xl xl:text-7xl">
             TechLynx 2026
-            <span className="mt-2 block bg-premium-gradient bg-clip-text text-transparent">National AI/ML Technical Symposium</span>
+            <span className="mt-2 block bg-premium-gradient bg-clip-text text-transparent">National Level Techno-Cultural Symposium</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-slate-300 md:text-xl">
             A national-level symposium by the Department of AI &amp; ML at CSI College of Engineering, presented for high-caliber

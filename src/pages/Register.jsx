@@ -8,8 +8,7 @@ const initialState = {
   department: "AI & ML Department",
   email: "",
   phoneNumber: "",
-  eventSelected: "IdeathonX",
-  paymentStatus: "Pending"
+  eventSelected: "IdeathonX"
 };
 
 const FORM_ENDPOINT =
@@ -38,8 +37,7 @@ function Register() {
       "entry.2283655": formData.department.trim(),
       "entry.1732981227": formData.email.trim(),
       "entry.230629987": formData.phoneNumber.trim(),
-      "entry.916226209": formData.eventSelected,
-      "entry.1630894865": formData.paymentStatus
+      "entry.916226209": formData.eventSelected
     };
 
     try {
@@ -113,14 +111,6 @@ function Register() {
               <option className="bg-slate-900">Reels Making</option>
             </select>
           </label>
-          <label className="text-sm text-slate-200">
-            Payment Status
-            <select className="mt-2 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white outline-none ring-cyan-300/40 focus:ring" name="paymentStatus" value={formData.paymentStatus} onChange={onChange}>
-              <option className="bg-slate-900">Pending</option>
-              <option className="bg-slate-900">Paid</option>
-            </select>
-          </label>
-
           {statusMessage ? (
             <p className={`md:col-span-2 text-sm ${statusType === "error" ? "text-rose-300" : "text-emerald-300"}`}>
               {statusMessage}
