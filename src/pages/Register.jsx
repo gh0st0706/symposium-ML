@@ -1,69 +1,43 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { eventBySlug, events } from "../data/events";
 
-const initialState = {
-  fullName: "",
-  collegeName: "CSI College of Engineering",
-  department: "AI & ML Department",
-  email: "",
-  phoneNumber: "",
-  eventSelected: "IdeathonX"
-};
-
-const FORM_ENDPOINT =
-  "https://docs.google.com/forms/d/e/1FAIpQLSfwMt-Ej7Ox0s6n8SgiuYz9DOwGV1_dSjpfr1NYnZ8iwZhrlQ/formResponse";
+const isConfiguredFormUrl = (url) => Boolean(url && !url.includes("REPLACE_"));
 
 function Register() {
-  const [formData, setFormData] = useState(initialState);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const location = useLocation();
+  const initialSlugFromState = location.state?.eventSlug;
+  const defaultSlug = eventBySlug[initialSlugFromState] ? initialSlugFromState : events[0]?.slug || "";
+
+  const [selectedSlug, setSelectedSlug] = useState(defaultSlug);
   const [statusMessage, setStatusMessage] = useState("");
-  const [statusType, setStatusType] = useState("idle");
+  const selectedEvent = eventBySlug[selectedSlug];
 
-  const onChange = (event) => {
-    const { name, value } = event.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
-  const onSubmit = async (event) => {
-    event.preventDefault();
-    setStatusMessage("");
-
-    setIsSubmitting(true);
-
-    const payload = {
-      "entry.2136022271": formData.fullName.trim(),
-      "entry.1235525554": formData.collegeName.trim(),
-      "entry.2283655": formData.department.trim(),
-      "entry.1732981227": formData.email.trim(),
-      "entry.230629987": formData.phoneNumber.trim(),
-      "entry.916226209": formData.eventSelected
-    };
-
-    try {
-      await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        mode: "no-cors",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: new URLSearchParams(payload).toString()
-      });
-
-      setStatusType("success");
-      setStatusMessage("Registration submitted. Your data has been saved to Google Forms.");
-      setFormData(initialState);
-    } catch (error) {
-      setStatusType("error");
-      const message = error?.message || "Submission failed. Please try again in a few moments.";
-      setStatusMessage(
-        message.includes("Failed to fetch")
-          ? "Registration submission failed. Please check your connection and try again."
-          : message
-      );
-    } finally {
-      setIsSubmitting(false);
+  useEffect(() => {
+    const stateSlug = location.state?.eventSlug;
+    if (stateSlug && eventBySlug[stateSlug]) {
+      setSelectedSlug(stateSlug);
     }
+  }, [location.state]);
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+
+    if (!selectedEvent) {
+      setStatusMessage("Please choose an event first.");
+      return;
+    }
+
+    if (!isConfiguredFormUrl(selectedEvent.registrationUrl)) {
+      setStatusMessage(
+        `Form link for ${selectedEvent.title} is not configured yet. Update registrationUrl in src/data/events.js.`
+      );
+      return;
+    }
+
+    setStatusMessage("");
+    window.location.assign(selectedEvent.registrationUrl);
   };
 
   return (
@@ -74,52 +48,56 @@ function Register() {
         transition={{ duration: 0.55 }}
         className="mx-auto w-full max-w-3xl rounded-3xl border border-white/15 bg-slate-950/70 p-8 backdrop-blur-xl md:p-10"
       >
-        <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">TechLynx Registration</p>
-        <h1 className="mt-3 font-display text-3xl font-bold text-white md:text-4xl">Secure Your Spot</h1>
-        <p className="mt-3 text-slate-300">Register for TechLynx 2026 by the AI &amp; ML department, CSI College of Engineering.</p>
+        <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">TechLynx Registration Pool</p>
+        <h1 className="mt-3 font-display text-3xl font-bold text-white md:text-4xl">Choose Your Event</h1>
+        <p className="mt-3 text-slate-300">
+          Select an event to continue to its dedicated registration form.
+        </p>
 
-        <form onSubmit={onSubmit} className="mt-8 grid gap-4 md:grid-cols-2">
-          <label className="text-sm text-slate-200 md:col-span-2">
-            Full Name
-            <input className="mt-2 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white outline-none ring-cyan-300/40 focus:ring" name="fullName" value={formData.fullName} onChange={onChange} required />
-          </label>
+        <form onSubmit={onSubmit} className="mt-8 grid gap-5">
           <label className="text-sm text-slate-200">
-            College Name
-            <input className="mt-2 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white outline-none ring-cyan-300/40 focus:ring" name="collegeName" value={formData.collegeName} onChange={onChange} required />
-          </label>
-          <label className="text-sm text-slate-200">
-            Department
-            <input className="mt-2 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white outline-none ring-cyan-300/40 focus:ring" name="department" value={formData.department} onChange={onChange} required />
-          </label>
-          <label className="text-sm text-slate-200">
-            Email
-            <input type="email" className="mt-2 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white outline-none ring-cyan-300/40 focus:ring" name="email" value={formData.email} onChange={onChange} required />
-          </label>
-          <label className="text-sm text-slate-200">
-            Phone Number
-            <input className="mt-2 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white outline-none ring-cyan-300/40 focus:ring" name="phoneNumber" value={formData.phoneNumber} onChange={onChange} required pattern="[0-9]{10}" title="Enter a 10-digit phone number" />
-          </label>
-          <label className="text-sm text-slate-200">
-            Event Selected
-            <select className="mt-2 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white outline-none ring-cyan-300/40 focus:ring" name="eventSelected" value={formData.eventSelected} onChange={onChange}>
-              <option className="bg-slate-900">IdeathonX</option>
-              <option className="bg-slate-900">Prompting</option>
-              <option className="bg-slate-900">eSports</option>
-              <option className="bg-slate-900">Talent Show</option>
-              <option className="bg-slate-900">Short Film</option>
-              <option className="bg-slate-900">Meme Making</option>
-              <option className="bg-slate-900">Reels Making</option>
+            Event
+            <select
+              className="mt-2 w-full rounded-xl border border-white/15 bg-white/5 px-4 py-3 text-white outline-none ring-cyan-300/40 focus:ring"
+              name="eventSlug"
+              value={selectedSlug}
+              onChange={(event) => {
+                setSelectedSlug(event.target.value);
+                setStatusMessage("");
+              }}
+              required
+            >
+              {events.map((eventItem) => (
+                <option key={eventItem.slug} value={eventItem.slug} className="bg-slate-900">
+                  {eventItem.title} ({eventItem.category})
+                </option>
+              ))}
             </select>
           </label>
-          {statusMessage ? (
-            <p className={`md:col-span-2 text-sm ${statusType === "error" ? "text-rose-300" : "text-emerald-300"}`}>
-              {statusMessage}
-            </p>
+
+          {selectedEvent ? (
+            <div className="rounded-xl border border-white/15 bg-white/5 p-4">
+              <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">Selected Event</p>
+              <h2 className="mt-2 font-display text-2xl font-semibold text-white">{selectedEvent.title}</h2>
+              <p className="mt-2 text-sm text-slate-300">{selectedEvent.description}</p>
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                <p className="rounded-lg border border-white/10 bg-slate-900/45 px-3 py-2 text-sm text-slate-200">
+                  Mode: {selectedEvent.mode}
+                </p>
+                <p className="rounded-lg border border-white/10 bg-slate-900/45 px-3 py-2 text-sm text-slate-200">
+                  Venue: {selectedEvent.venue}
+                </p>
+              </div>
+            </div>
           ) : null}
 
-          <div className="mt-4 flex flex-wrap gap-4 md:col-span-2">
-            <button type="submit" disabled={isSubmitting} className="gradient-btn disabled:cursor-not-allowed disabled:opacity-70">
-              {isSubmitting ? "Submitting..." : "Submit"}
+          {statusMessage ? (
+            <p className="text-sm text-rose-300">{statusMessage}</p>
+          ) : null}
+
+          <div className="mt-2 flex flex-wrap gap-4">
+            <button type="submit" className="gradient-btn">
+              Continue to Event Form
             </button>
             <Link to="/" className="inline-flex items-center justify-center rounded-full border border-white/20 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200 hover:border-cyan-300/60 hover:text-cyan-200">
               Back Home

@@ -2,12 +2,22 @@ import esportsFloatOne from "../assets/1.jpeg";
 import esportsFloatTwo from "../assets/2.jpeg";
 import esportsFloatThree from "../assets/3.jpeg";
 import dogeImage from "../assets/doge.jpeg";
-import reelsIcon from "../assets/Instagram Reels icon in iOS Style.jpeg";
 import lightBulbImage from "../assets/ideathon-bulb.jpeg";
 import laptopHandsImage from "../assets/prompting-laptop.jpeg";
 import promptWordsImage from "../assets/prompting-words.jpeg";
 import talentShowImage from "../assets/talent-show.jpeg";
 import shortFilmImage from "../assets/short-film.jpeg";
+
+const registrationForms = {
+  ideathonx: "https://forms.gle/rqMhA4mUvf7mWLtZ7",
+  "paper-presentation": "https://forms.gle/fwWqcAWQK5K1ZFg68",
+  "algo-auction": "https://forms.gle/FCZkyZnJfdbvfR5g6",
+  prompting: "https://forms.gle/REPLACE_PROMPTING_FORM",
+  esports: "https://forms.gle/4YQT7QTjXZZPkNfT8",
+  "talent-show": "https://forms.gle/r89kk3tt46nC4YT86",
+  "short-film": "https://forms.gle/REPLACE_SHORT_FILM_FORM",
+  "meme-making": "https://forms.gle/REPLACE_MEME_MAKING_FORM"
+};
 
 export const technicalEvents = [
   {
@@ -19,6 +29,7 @@ export const technicalEvents = [
     venue: "Department of AIML",
     icon: "T1",
     prize: "TBA",
+    registrationUrl: registrationForms.ideathonx,
     rules: [
       "Each team must have 2 to 4 members, and all members must register under the same team name.",
       "Ideas must address a real problem and should be original, practical, and clearly explained.",
@@ -35,6 +46,56 @@ export const technicalEvents = [
     ]
   },
   {
+    slug: "paper-presentation",
+    title: "Paper Presentation",
+    category: "Technical",
+    description: "Present research papers, case studies, and technical insights with strong structure and clarity.",
+    mode: "Solo / Team",
+    venue: "Department of AIML",
+    icon: "T1B",
+    prize: "TBA",
+    registrationUrl: registrationForms["paper-presentation"],
+    rules: [
+      "Participants may present individually or as a team, based on event coordinator instructions.",
+      "The paper topic should be original and relevant to technology, engineering, or innovation domains.",
+      "Presenters must bring slides or supporting material in a ready-to-present format.",
+      "The presentation and Q&A must stay within the time limit announced by coordinators.",
+      "Plagiarism or uncredited copied work will lead to direct disqualification.",
+      "Judging will be based on content quality, technical depth, clarity, and presentation skills."
+    ],
+    image: promptWordsImage,
+    floaters: [
+      { type: "image", src: promptWordsImage },
+      { type: "label", label: "Abstract" },
+      { type: "label", label: "Present" }
+    ]
+  },
+  {
+    slug: "algo-auction",
+    title: "Algo Auction",
+    category: "Technical",
+    description: "Compete through strategy-driven bidding rounds, algorithmic problem solving, and fast technical decision-making.",
+    mode: "Team",
+    venue: "Department of AIML",
+    icon: "T1C",
+    prize: "TBA",
+    registrationUrl: registrationForms["algo-auction"],
+    rules: [
+      "Participants must register with the same team name if the event is played in teams.",
+      "Each round will involve bidding, selection, or challenge allocation based on event coordinator rules.",
+      "Teams must complete the allotted problem or task within the announced time limit.",
+      "Unfair collaboration, use of prohibited resources, or rule violations can lead to disqualification.",
+      "All bids, challenge assignments, and scoring decisions recorded by the organizers will be final.",
+      "Judging will consider strategy, correctness, speed, and overall execution across rounds."
+    ],
+    image: laptopHandsImage,
+    floaters: [
+      { type: "image", src: laptopHandsImage },
+      { type: "label", label: "Bid" },
+      { type: "label", label: "Solve" }
+    ]
+  },
+  {
     slug: "prompting",
     title: "Prompting",
     category: "Technical",
@@ -43,6 +104,7 @@ export const technicalEvents = [
     venue: "Department of AIML",
     icon: "T2",
     prize: "TBA",
+    registrationUrl: registrationForms.prompting,
     rules: [
       "This is an individual event, and only one participant is allowed per registration.",
       "Participants must solve the given challenge using prompts, prompt iterations, and clear reasoning.",
@@ -70,6 +132,7 @@ export const nonTechnicalEvents = [
     venue: "Department of AIML",
     icon: "N1",
     prize: "TBA",
+    registrationUrl: registrationForms.esports,
     rules: [
       "Each team must report on time with the full roster before the match schedule begins.",
       "The roster submitted at registration cannot be changed after fixtures are finalized.",
@@ -87,13 +150,14 @@ export const nonTechnicalEvents = [
   },
   {
     slug: "talent-show",
-    title: "Talent Show",
+    title: "Talent Battle",
     category: "Non-Technical",
-    description: "Stage performances that celebrate creativity, confidence, and showmanship.",
+    description: "High-energy stage performances that reward creativity, confidence, and crowd-pulling presence.",
     mode: "Solo / Team",
     venue: "Department of AIML",
     icon: "N2",
     prize: "TBA",
+    registrationUrl: registrationForms["talent-show"],
     rules: [
       "Participants may perform solo or as a team, but the final lineup must be confirmed before the event starts.",
       "Each act must stay within the time limit announced by the event coordinators.",
@@ -105,8 +169,8 @@ export const nonTechnicalEvents = [
     image: talentShowImage,
     floaters: [
       { type: "image", src: talentShowImage },
-      { type: "label", label: "Stage" },
-      { type: "label", label: "Encore" }
+      { type: "label", label: "Battle" },
+      { type: "label", label: "Perform" }
     ]
   }
 ];
@@ -121,6 +185,25 @@ export const preEvents = [
     venue: "Department of AIML",
     icon: "P1",
     prize: "TBA",
+    registrationUrl: registrationForms["short-film"],
+    topics: [
+      {
+        title: "Mental Health Awareness",
+        description: "Build a story around depression, anxiety, student pressure, emotional burnout, and the importance of breaking stigma through empathy and support."
+      },
+      {
+        title: "Cyber Safety & Digital Addiction",
+        description: "Explore online scams, privacy risks, excessive screen dependence, and the real impact of social media on daily life and mental well-being."
+      },
+      {
+        title: "Environmental Protection",
+        description: "Highlight climate change, pollution, plastic waste, and the urgent need for responsible action to protect the planet."
+      },
+      {
+        title: "Women Safety & Empowerment",
+        description: "Focus on harassment, equality, self-defense, confidence, and the importance of creating spaces where women can live and speak freely."
+      }
+    ],
     rules: [
       "Teams must submit an original short film created specifically for the competition.",
       "The film duration must remain within the minimum and maximum limits shared by the organizers.",
@@ -145,6 +228,25 @@ export const preEvents = [
     venue: "Department of AIML",
     icon: "P2",
     prize: "TBA",
+    registrationUrl: registrationForms["meme-making"],
+    topics: [
+      {
+        title: "Drug Abuse Awareness",
+        description: "Create memes that spotlight the dangers of addiction, the impact of peer pressure, and the importance of choosing a healthy path."
+      },
+      {
+        title: "Road Safety Awareness",
+        description: "Focus on safe driving, helmet and seatbelt use, avoiding mobile phone distractions, and the importance of following traffic rules."
+      },
+      {
+        title: "Child Labour Awareness",
+        description: "Use your concept to highlight the harm caused by child labour and the need to protect every child's right to safety, dignity, and learning."
+      },
+      {
+        title: "Importance of Education",
+        description: "Show how education builds opportunity, confidence, and a better future for individuals, families, and society."
+      }
+    ],
     rules: [
       "This is an individual event, and each participant may submit only the number of entries allowed by the coordinators.",
       "Memes must be original and relevant to the event theme, technology, or student culture prompt provided.",
@@ -158,30 +260,6 @@ export const preEvents = [
       { type: "image", src: dogeImage },
       { type: "label", label: "Caption" },
       { type: "label", label: "Punchline" }
-    ]
-  },
-  {
-    slug: "reels-making",
-    title: "Reels Making",
-    category: "Pre-Event",
-    description: "Craft fast, engaging reels that capture TechLynx energy.",
-    mode: "Solo",
-    venue: "Department of AIML",
-    icon: "P3",
-    prize: "TBA",
-    rules: [
-      "Participants must create and submit an original reel aligned with the TechLynx theme or event brief.",
-      "The reel should follow the duration and aspect ratio guidelines announced by the coordinators.",
-      "Only copyright-safe audio, visuals, and editing assets should be used in the final submission.",
-      "The final reel must be submitted before the deadline in the required format or platform link.",
-      "Entries with inappropriate content, plagiarism, or reused public reels will be rejected.",
-      "Judging will focus on creativity, storytelling, editing quality, and audience appeal."
-    ],
-    image: reelsIcon,
-    floaters: [
-      { type: "image", src: reelsIcon },
-      { type: "label", label: "Shoot" },
-      { type: "label", label: "Cut" }
     ]
   }
 ];

@@ -42,7 +42,7 @@ function Events() {
 
       <div className="mt-12">
         <h3 className="font-display text-2xl font-semibold text-rose-200">Pre-Events</h3>
-        <div className="mt-5 grid gap-6 md:grid-cols-3">
+        <div className="mt-5 grid gap-6 md:grid-cols-2">
           {preEvents.map((event) => (
             <Link key={event.slug} to={`/events/${event.slug}`} className="block">
               <EventCard event={event} />

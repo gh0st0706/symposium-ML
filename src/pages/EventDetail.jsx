@@ -92,6 +92,8 @@ function EventDetail() {
     );
   }
 
+  const hasDirectForm = Boolean(event.registrationUrl && !event.registrationUrl.includes("REPLACE_"));
+
   return (
     <section className="section-wrap min-h-[86vh] pt-32 pb-20">
       <motion.div
@@ -118,6 +120,35 @@ function EventDetail() {
             <p className="mt-2 text-lg font-semibold text-white">{event.venue}</p>
           </div>
         </div>
+
+        {event.topics?.length ? (
+          <div className="relative mt-10 rounded-2xl border border-white/15 bg-white/5 p-6 md:p-7">
+            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="text-xs uppercase tracking-[0.22em] text-amber-200">Themes & Topics</p>
+                <h2 className="mt-2 font-display text-2xl font-semibold text-white">Build your idea around these themes</h2>
+              </div>
+              <p className="max-w-xl text-sm text-slate-400">
+                These topic prompts apply to events that need themed creative submissions, including awareness-based memes and short films.
+              </p>
+            </div>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {event.topics.map((topic, index) => (
+                <motion.div
+                  key={`${event.slug}-topic-${index}`}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: 0.08 * index }}
+                  className="rounded-xl border border-amber-300/15 bg-slate-950/55 p-4"
+                >
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-amber-200">{topic.title}</p>
+                  <p className="mt-3 text-sm leading-6 text-slate-200">{topic.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        ) : null}
 
         {event.rules?.length ? (
           <div className="relative mt-10 rounded-2xl border border-white/15 bg-white/5 p-6 md:p-7">
@@ -153,9 +184,15 @@ function EventDetail() {
         ) : null}
 
         <div className="relative mt-10 flex flex-wrap gap-4">
-          <Link to="/register" state={{ fromRegisterButton: true }} className="gradient-btn">
-            Register for {event.title}
-          </Link>
+          {hasDirectForm ? (
+            <a href={event.registrationUrl} target="_blank" rel="noreferrer" className="gradient-btn">
+              Register for {event.title}
+            </a>
+          ) : (
+            <Link to="/register" state={{ eventSlug: event.slug }} className="gradient-btn">
+              Register for {event.title}
+            </Link>
+          )}
           <Link to="/#events" className="inline-flex items-center justify-center rounded-full border border-white/25 px-6 py-3 text-xs font-semibold uppercase tracking-[0.2em] text-slate-200 hover:border-cyan-300/60 hover:text-cyan-200">
             Back to Events
           </Link>
