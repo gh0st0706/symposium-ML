@@ -261,20 +261,16 @@ export const preEvents = [
     registrationUrl: registrationForms["meme-making"],
     topics: [
       {
-        title: "Drug Abuse Awareness",
-        description: "Create memes that spotlight the dangers of addiction, the impact of peer pressure, and the importance of choosing a healthy path."
+        title: "Parallel Universe College Life",
+        description: "Imagine a college world where everything works perfectly with no stress, no deadlines, no attendance panic, and no last-minute chaos. Turn that dream version of student life into a clever meme."
       },
       {
-        title: "Road Safety Awareness",
-        description: "Focus on safe driving, helmet and seatbelt use, avoiding mobile phone distractions, and the importance of following traffic rules."
+        title: "AI Taking Over Everything",
+        description: "Build memes around chatbots, automation, future jobs, and the funny side of AI slowly taking over everyday life, classrooms, and human tasks."
       },
       {
-        title: "Child Labour Awareness",
-        description: "Use your concept to highlight the harm caused by child labour and the need to protect every child's right to safety, dignity, and learning."
-      },
-      {
-        title: "Importance of Education",
-        description: "Show how education builds opportunity, confidence, and a better future for individuals, families, and society."
+        title: "If AI Had Emotions",
+        description: "Picture AI reacting like a human with anger, sadness, sarcasm, or attitude. Create memes that imagine tools like ChatGPT behaving emotionally in funny or relatable situations."
       }
     ],
     rules: [
