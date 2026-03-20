@@ -58,32 +58,20 @@
   }
 }
 
-.glow-cursor {
+.cursor-glow {
   position: fixed;
+  inset: 0;
   z-index: 90;
   pointer-events: none;
-  left: -240px;
-  top: -240px;
-  border-radius: 9999px;
-  will-change: left, top;
-}
-
-.glow-cursor--halo {
-  width: 132px;
-  height: 132px;
-  margin-left: -66px;
-  margin-top: -66px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.26) 0%, rgba(56, 189, 248, 0.12) 38%, rgba(96, 165, 250, 0.06) 56%, transparent 76%);
-  filter: blur(3px);
-}
-
-.glow-cursor--core {
-  width: 16px;
-  height: 16px;
-  margin-left: -8px;
-  margin-top: -8px;
-  background: radial-gradient(circle at 30% 30%, rgba(224, 242, 254, 0.98) 0%, rgba(34, 211, 238, 0.88) 45%, rgba(8, 145, 178, 0.65) 100%);
-  box-shadow: 0 0 16px rgba(56, 189, 248, 0.9), 0 0 32px rgba(34, 211, 238, 0.4);
+  background:
+    radial-gradient(
+      130px circle at var(--cursor-x, -999px) var(--cursor-y, -999px),
+      rgba(56, 189, 248, 0.2) 0%,
+      rgba(56, 189, 248, 0.1) 32%,
+      rgba(14, 165, 233, 0.05) 52%,
+      rgba(14, 165, 233, 0) 72%
+    );
+  will-change: background;
 }
 
 @layer components {
@@ -227,7 +215,7 @@
 }
 
 @media (hover: none), (pointer: coarse) {
-  .glow-cursor {
+  .cursor-glow {
     display: none;
   }
 }
