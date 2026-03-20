@@ -1,7 +1,6 @@
 import esportsFloatOne from "../assets/mini.jpeg";
 import esportsFloatTwo from "../assets/2.jpeg";
 import esportsFloatThree from "../assets/3.jpeg";
-import dogeImage from "../assets/doge.jpeg";
 import lightBulbImage from "../assets/ideathon-bulb.jpeg";
 import laptopHandsImage from "../assets/prompting-laptop.jpeg";
 import promptWordsImage from "../assets/prompting-words.jpeg";
@@ -17,8 +16,7 @@ const registrationForms = {
   esports: "https://forms.gle/4YQT7QTjXZZPkNfT8",
   "talent-show": "https://forms.gle/r89kk3tt46nC4YT86",
   "treasure-hunt": "https://forms.gle/uewPg9JWtNQtQZ7m8",
-  "short-film": "https://forms.gle/jjdB93Qe2RLSiFvA8",
-  "meme-making": "https://forms.gle/REPLACE_MEME_MAKING_FORM"
+  "short-film": "https://forms.gle/jjdB93Qe2RLSiFvA8"
 };
 
 export const technicalEvents = [
@@ -176,32 +174,6 @@ export const nonTechnicalEvents = [
       { type: "label", label: "Battle" },
       { type: "label", label: "Perform" }
     ]
-  },
-  {
-    slug: "treasure-hunt",
-    title: "Treasure Hunt",
-    category: "Non-Technical",
-    description: "Race through clue-based checkpoints, decoding tasks, and surprise challenges with speed, teamwork, and sharp observation.",
-    mode: "Team",
-    venue: "Department of AIML",
-    icon: "N3",
-    prize: "TBA",
-    registrationUrl: registrationForms["treasure-hunt"],
-    rules: [
-      "Teams must stay together throughout the event unless the coordinators announce a special round format.",
-      "Each clue must be solved in the intended order, and skipping checkpoints is not allowed.",
-      "Using unauthorized help, outside participants, or online answer sharing will lead to disqualification.",
-      "The team that completes the trail correctly in the shortest time will have the advantage.",
-      "Participants must respect campus rules, safety instructions, and all restricted areas during the hunt.",
-      "Coordinator decisions on clue validation, time records, and final rankings will be final."
-    ],
-    image: treasureImage,
-    floaters: [
-      { type: "image", src: treasureImage },
-      { type: "label", label: "Clue" },
-      { type: "label", label: "Track" },
-      { type: "label", label: "Find" }
-    ]
   }
 ];
 
@@ -250,42 +222,29 @@ export const preEvents = [
     ]
   },
   {
-    slug: "meme-making",
-    title: "Meme Making",
+    slug: "treasure-hunt",
+    title: "Treasure Hunt",
     category: "Pre-Event",
-    description: "Create sharp, tech-flavored memes with originality and timing.",
-    mode: "Solo",
+    description: "Race through clue-based checkpoints, decoding tasks, and surprise challenges with speed, teamwork, and sharp observation.",
+    mode: "Team",
     venue: "Department of AIML",
     icon: "P2",
     prize: "TBA",
-    registrationUrl: registrationForms["meme-making"],
-    topics: [
-      {
-        title: "Parallel Universe College Life",
-        description: "Imagine a college world where everything works perfectly with no stress, no deadlines, no attendance panic, and no last-minute chaos. Turn that dream version of student life into a clever meme."
-      },
-      {
-        title: "AI Taking Over Everything",
-        description: "Build memes around chatbots, automation, future jobs, and the funny side of AI slowly taking over everyday life, classrooms, and human tasks."
-      },
-      {
-        title: "If AI Had Emotions",
-        description: "Picture AI reacting like a human with anger, sadness, sarcasm, or attitude. Create memes that imagine tools like ChatGPT behaving emotionally in funny or relatable situations."
-      }
-    ],
+    registrationUrl: registrationForms["treasure-hunt"],
     rules: [
-      "This is an individual event, and each participant may submit only the number of entries allowed by the coordinators.",
-      "Memes must be original and relevant to the event theme, technology, or student culture prompt provided.",
-      "Copied templates are allowed only if the captioning and concept are genuinely original.",
-      "Entries containing offensive, abusive, or discriminatory material will be disqualified.",
-      "Participants must submit the final meme in the requested image format before the deadline.",
-      "Judging will consider humor, originality, timing, relatability, and visual execution."
+      "Teams must stay together throughout the event unless the coordinators announce a special round format.",
+      "Each clue must be solved in the intended order, and skipping checkpoints is not allowed.",
+      "Using unauthorized help, outside participants, or online answer sharing will lead to disqualification.",
+      "The team that completes the trail correctly in the shortest time will have the advantage.",
+      "Participants must respect campus rules, safety instructions, and all restricted areas during the hunt.",
+      "Coordinator decisions on clue validation, time records, and final rankings will be final."
     ],
-    image: dogeImage,
+    image: treasureImage,
     floaters: [
-      { type: "image", src: dogeImage },
-      { type: "label", label: "Caption" },
-      { type: "label", label: "Punchline" }
+      { type: "image", src: treasureImage },
+      { type: "label", label: "Clue" },
+      { type: "label", label: "Track" },
+      { type: "label", label: "Find" }
     ]
   }
 ];

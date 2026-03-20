@@ -135,7 +135,7 @@ function EventDetail() {
                 <h2 className="mt-2 font-display text-2xl font-semibold text-white">Build your idea around these themes</h2>
               </div>
               <p className="max-w-xl text-sm text-slate-400">
-                These topic prompts apply to events that need themed creative submissions, including awareness-based memes and short films.
+                These topic prompts apply to events that need themed creative submissions and guided storytelling.
               </p>
             </div>
 

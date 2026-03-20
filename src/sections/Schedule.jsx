@@ -3,8 +3,8 @@ import { motion } from "framer-motion";
 const schedule = [
   { time: "09:00 AM", title: "Inauguration | TechLynx Opening", note: "Welcome address by AI & ML Department" },
   { time: "10:00 AM", title: "Technical Arena Opens", note: "IdeathonX + Paper Presentation + Algo Auction + Prompting challenges begin" },
-  { time: "12:30 PM", title: "Non-Technical Arena Opens", note: "eSports brackets, Talent Battle, and Treasure Hunt rounds" },
-  { time: "02:30 PM", title: "Pre-Event Highlights", note: "Short Film and Meme Making showcases" },
+  { time: "12:30 PM", title: "Non-Technical Arena Opens", note: "eSports brackets and Talent Battle rounds" },
+  { time: "02:30 PM", title: "Pre-Event Highlights", note: "Short Film and Treasure Hunt highlights" },
   { time: "04:00 PM", title: "Demo and Showcase Session", note: "Team pitches, prototype walk-throughs" },
   { time: "05:30 PM", title: "Valediction and Awards", note: "Prize distribution and closing ceremony" }
 ];
