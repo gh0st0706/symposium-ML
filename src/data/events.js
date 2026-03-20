@@ -1,4 +1,4 @@
-import esportsFloatOne from "../assets/1.jpeg";
+import esportsFloatOne from "../assets/mini.jpeg";
 import esportsFloatTwo from "../assets/2.jpeg";
 import esportsFloatThree from "../assets/3.jpeg";
 import dogeImage from "../assets/doge.jpeg";
@@ -13,7 +13,7 @@ const registrationForms = {
   ideathonx: "https://forms.gle/rqMhA4mUvf7mWLtZ7",
   "paper-presentation": "https://forms.gle/fwWqcAWQK5K1ZFg68",
   "algo-auction": "https://forms.gle/FCZkyZnJfdbvfR5g6",
-  prompting: "https://forms.gle/REPLACE_PROMPTING_FORM",
+  prompting: "https://forms.gle/LHqjP1EyxkdWcxcu7",
   esports: "https://forms.gle/4YQT7QTjXZZPkNfT8",
   "talent-show": "https://forms.gle/r89kk3tt46nC4YT86",
   "treasure-hunt": "https://forms.gle/uewPg9JWtNQtQZ7m8",
@@ -130,18 +130,20 @@ export const nonTechnicalEvents = [
     title: "eSports",
     category: "Non-Technical",
     description: "Competitive brackets with live shoutcasts and high-energy matchups.",
-    mode: "Team",
+    mode: "Solo / Team (Max 4)",
     venue: "Department of AIML",
     icon: "N1",
     prize: "TBA",
     registrationUrl: registrationForms.esports,
+    gamesIncluded: ["Free Fire", "eFootball", "Mini Militia"],
     rules: [
-      "Each team must report on time with the full roster before the match schedule begins.",
-      "The roster submitted at registration cannot be changed after fixtures are finalized.",
-      "Use of cheats, exploits, unofficial mods, or unfair third-party tools will result in immediate disqualification.",
-      "Players must follow the lobby settings, game mode, and match format given by the coordinators.",
-      "Any team absent at the reporting time may forfeit the match based on organizer discretion.",
-      "Referee calls and organizer decisions on disputes, restarts, and results will be final."
+      "All participants are required to register through the Google Form. Payment can be made later, but registration is mandatory.",
+      "Participation is open for solo players or teams with a maximum of 4 members.",
+      "Team formation must be finalized before the match begins.",
+      "Players must bring their own devices and ensure they have a stable internet connection.",
+      "Use of unfair means, hacks, exploits, or unauthorized third-party tools will lead to immediate disqualification.",
+      "The tournament format and match structure will be announced on the spot by the coordinators.",
+      "Participants may pay the registration fee via Google Pay using the provided ID or choose spot registration on the day of the event."
     ],
     image: esportsFloatOne,
     floaters: [

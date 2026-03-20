@@ -156,6 +156,34 @@ function EventDetail() {
           </div>
         ) : null}
 
+        {event.gamesIncluded?.length ? (
+          <div className="relative mt-10 rounded-2xl border border-white/15 bg-white/5 p-6 md:p-7">
+            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="text-xs uppercase tracking-[0.22em] text-violet-200">Games Included</p>
+                <h2 className="mt-2 font-display text-2xl font-semibold text-white">Choose the title you want to play</h2>
+              </div>
+              <p className="max-w-xl text-sm text-slate-400">
+                Register through the official event form first, then compete in one of the announced game titles.
+              </p>
+            </div>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-3">
+              {event.gamesIncluded.map((game, index) => (
+                <motion.div
+                  key={`${event.slug}-game-${index}`}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: 0.08 * index }}
+                  className="rounded-xl border border-violet-300/15 bg-slate-950/55 p-4"
+                >
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-violet-200">{game}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         {event.rules?.length ? (
           <div className="relative mt-10 rounded-2xl border border-white/15 bg-white/5 p-6 md:p-7">
             <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
