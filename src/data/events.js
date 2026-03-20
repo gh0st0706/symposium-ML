@@ -19,6 +19,14 @@ export const technicalEvents = [
     venue: "Department of AIML",
     icon: "T1",
     prize: "TBA",
+    rules: [
+      "Each team must have 2 to 4 members, and all members must register under the same team name.",
+      "Ideas must address a real problem and should be original, practical, and clearly explained.",
+      "Teams must be ready with a short pitch deck or visual aid for the presentation round.",
+      "The total presentation and Q&A time must stay within the limit announced by the coordinators.",
+      "Any copied idea, fabricated research, or plagiarism in content will lead to disqualification.",
+      "The judges' decision on innovation, feasibility, and impact will be final."
+    ],
     image: lightBulbImage,
     floaters: [
       { type: "image", src: lightBulbImage },
@@ -35,6 +43,14 @@ export const technicalEvents = [
     venue: "Department of AIML",
     icon: "T2",
     prize: "TBA",
+    rules: [
+      "This is an individual event, and only one participant is allowed per registration.",
+      "Participants must solve the given challenge using prompts, prompt iterations, and clear reasoning.",
+      "Prompt history or the final prompt flow should be shown to the judges when requested.",
+      "Using pre-built solutions that bypass the challenge intent is not allowed.",
+      "Submissions will be judged on prompt quality, output relevance, refinement process, and clarity.",
+      "Participants must complete the round within the allotted time announced at the venue."
+    ],
     image: laptopHandsImage,
     floaters: [
       { type: "image", src: laptopHandsImage },
@@ -54,6 +70,14 @@ export const nonTechnicalEvents = [
     venue: "Department of AIML",
     icon: "N1",
     prize: "TBA",
+    rules: [
+      "Each team must report on time with the full roster before the match schedule begins.",
+      "The roster submitted at registration cannot be changed after fixtures are finalized.",
+      "Use of cheats, exploits, unofficial mods, or unfair third-party tools will result in immediate disqualification.",
+      "Players must follow the lobby settings, game mode, and match format given by the coordinators.",
+      "Any team absent at the reporting time may forfeit the match based on organizer discretion.",
+      "Referee calls and organizer decisions on disputes, restarts, and results will be final."
+    ],
     image: esportsFloatOne,
     floaters: [
       { type: "image", src: esportsFloatOne },
@@ -70,6 +94,14 @@ export const nonTechnicalEvents = [
     venue: "Department of AIML",
     icon: "N2",
     prize: "TBA",
+    rules: [
+      "Participants may perform solo or as a team, but the final lineup must be confirmed before the event starts.",
+      "Each act must stay within the time limit announced by the event coordinators.",
+      "Participants must carry their audio track or performance file in a ready-to-use format.",
+      "Performances must avoid offensive, unsafe, or inappropriate content on stage.",
+      "Props are allowed only if they are easy to manage and do not damage the venue.",
+      "Judging will be based on talent, stage presence, originality, and audience engagement."
+    ],
     image: talentShowImage,
     floaters: [
       { type: "image", src: talentShowImage },
@@ -89,6 +121,14 @@ export const preEvents = [
     venue: "Department of AIML",
     icon: "P1",
     prize: "TBA",
+    rules: [
+      "Teams must submit an original short film created specifically for the competition.",
+      "The film duration must remain within the minimum and maximum limits shared by the organizers.",
+      "Entries must be submitted in a playable digital format before the stated deadline.",
+      "Use of copyrighted media without permission may affect eligibility or scoring.",
+      "Films containing hateful, explicit, or unsafe content can be rejected from screening.",
+      "Judging will focus on storytelling, direction, editing, creativity, and overall impact."
+    ],
     image: shortFilmImage,
     floaters: [
       { type: "image", src: shortFilmImage },
@@ -105,6 +145,14 @@ export const preEvents = [
     venue: "Department of AIML",
     icon: "P2",
     prize: "TBA",
+    rules: [
+      "This is an individual event, and each participant may submit only the number of entries allowed by the coordinators.",
+      "Memes must be original and relevant to the event theme, technology, or student culture prompt provided.",
+      "Copied templates are allowed only if the captioning and concept are genuinely original.",
+      "Entries containing offensive, abusive, or discriminatory material will be disqualified.",
+      "Participants must submit the final meme in the requested image format before the deadline.",
+      "Judging will consider humor, originality, timing, relatability, and visual execution."
+    ],
     image: dogeImage,
     floaters: [
       { type: "image", src: dogeImage },
@@ -121,6 +169,14 @@ export const preEvents = [
     venue: "Department of AIML",
     icon: "P3",
     prize: "TBA",
+    rules: [
+      "Participants must create and submit an original reel aligned with the TechLynx theme or event brief.",
+      "The reel should follow the duration and aspect ratio guidelines announced by the coordinators.",
+      "Only copyright-safe audio, visuals, and editing assets should be used in the final submission.",
+      "The final reel must be submitted before the deadline in the required format or platform link.",
+      "Entries with inappropriate content, plagiarism, or reused public reels will be rejected.",
+      "Judging will focus on creativity, storytelling, editing quality, and audience appeal."
+    ],
     image: reelsIcon,
     floaters: [
       { type: "image", src: reelsIcon },

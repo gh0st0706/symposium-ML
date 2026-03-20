@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 const contacts = [
   { label: "Symposium", value: "TechLynx 2026" },
   { label: "Department", value: "AI & ML Department, CSI College of Engineering" },
-  { label: "Email", value: "techlynx.aiml@csice.edu.in" },
+  { label: "Email", value: "skynetics.aiml@gmail.com" },
   { label: "Coordinator", value: "+91 98765 43210" },
   { label: "Support", value: "+91 91234 56789" }
 ];
@@ -25,7 +25,13 @@ function Contact() {
         {contacts.map((entry) => (
           <article key={entry.label} className="glass-panel rounded-2xl p-5">
             <p className="text-xs uppercase tracking-[0.2em] text-cyan-300">{entry.label}</p>
-            <p className="mt-2 text-lg font-medium text-slate-100">{entry.value}</p>
+            {entry.label === "Email" ? (
+              <a href={`mailto:${entry.value}`} className="mt-2 inline-block text-lg font-medium text-slate-100 transition hover:text-cyan-200">
+                {entry.value}
+              </a>
+            ) : (
+              <p className="mt-2 text-lg font-medium text-slate-100">{entry.value}</p>
+            )}
           </article>
         ))}
       </div>

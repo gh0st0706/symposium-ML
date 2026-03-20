@@ -119,6 +119,39 @@ function EventDetail() {
           </div>
         </div>
 
+        {event.rules?.length ? (
+          <div className="relative mt-10 rounded-2xl border border-white/15 bg-white/5 p-6 md:p-7">
+            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="text-xs uppercase tracking-[0.22em] text-cyan-300">Rules & Guidelines</p>
+                <h2 className="mt-2 font-display text-2xl font-semibold text-white">How this event runs</h2>
+              </div>
+              <p className="max-w-xl text-sm text-slate-400">
+                Review these instructions before registering so your submission or performance stays eligible.
+              </p>
+            </div>
+
+            <div className="mt-6 grid gap-4 md:grid-cols-2">
+              {event.rules.map((rule, index) => (
+                <motion.div
+                  key={`${event.slug}-rule-${index}`}
+                  initial={{ opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35, delay: 0.08 * index }}
+                  className="rounded-xl border border-cyan-300/15 bg-slate-950/55 p-4"
+                >
+                  <div className="flex items-start gap-4">
+                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-cyan-300/30 bg-cyan-300/10 text-sm font-semibold text-cyan-200">
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <p className="text-sm leading-6 text-slate-200">{rule}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        ) : null}
+
         <div className="relative mt-10 flex flex-wrap gap-4">
           <Link to="/register" state={{ fromRegisterButton: true }} className="gradient-btn">
             Register for {event.title}
