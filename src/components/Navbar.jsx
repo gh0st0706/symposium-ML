@@ -28,7 +28,7 @@ function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <p className="pointer-events-none absolute right-4 top-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-200 md:right-10 md:text-[11px]">
+      <p className="pointer-events-none absolute left-4 top-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-cyan-200 md:left-10 md:text-[11px]">
         TechLynx By skynetics
       </p>
       <nav className="section-wrap flex items-center justify-between py-3">
