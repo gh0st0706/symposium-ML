@@ -46,9 +46,6 @@ function EventCard({ event }) {
         </div>
         <h3 className="font-display text-2xl font-semibold text-white">{event.title}</h3>
         <p className="mt-3 text-slate-300">{event.description}</p>
-        <div className="mt-6 inline-flex rounded-full border border-amber-300/35 bg-amber-400/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.18em] text-amber-200">
-          Prize Pool: {event.prize}
-        </div>
       </div>
     </motion.article>
   );

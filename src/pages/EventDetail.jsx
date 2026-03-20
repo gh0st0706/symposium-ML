@@ -93,6 +93,12 @@ function EventDetail() {
   }
 
   const hasDirectForm = Boolean(event.registrationUrl && !event.registrationUrl.includes("REPLACE_"));
+  const openRegistrationForm = (url) => {
+    const openedWindow = window.open(url, "_blank", "noopener,noreferrer");
+    if (!openedWindow) {
+      window.location.href = url;
+    }
+  };
 
   return (
     <section className="section-wrap min-h-[86vh] pt-32 pb-20">
@@ -185,9 +191,13 @@ function EventDetail() {
 
         <div className="relative mt-10 flex flex-wrap gap-4">
           {hasDirectForm ? (
-            <a href={event.registrationUrl} target="_blank" rel="noreferrer" className="gradient-btn">
+            <button
+              type="button"
+              onClick={() => openRegistrationForm(event.registrationUrl)}
+              className="gradient-btn"
+            >
               Register for {event.title}
-            </a>
+            </button>
           ) : (
             <Link to="/register" state={{ eventSlug: event.slug }} className="gradient-btn">
               Register for {event.title}

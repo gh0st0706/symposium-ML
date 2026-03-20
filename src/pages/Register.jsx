@@ -4,6 +4,12 @@ import { Link, useLocation } from "react-router-dom";
 import { eventBySlug, events } from "../data/events";
 
 const isConfiguredFormUrl = (url) => Boolean(url && !url.includes("REPLACE_"));
+const openRegistrationForm = (url) => {
+  const openedWindow = window.open(url, "_blank", "noopener,noreferrer");
+  if (!openedWindow) {
+    window.location.href = url;
+  }
+};
 
 function Register() {
   const location = useLocation();
@@ -37,7 +43,7 @@ function Register() {
     }
 
     setStatusMessage("");
-    window.location.assign(selectedEvent.registrationUrl);
+    openRegistrationForm(selectedEvent.registrationUrl);
   };
 
   return (

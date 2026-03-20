@@ -17,7 +17,7 @@ const registrationForms = {
   esports: "https://forms.gle/4YQT7QTjXZZPkNfT8",
   "talent-show": "https://forms.gle/r89kk3tt46nC4YT86",
   "treasure-hunt": "https://forms.gle/uewPg9JWtNQtQZ7m8",
-  "short-film": "https://forms.gle/REPLACE_SHORT_FILM_FORM",
+  "short-film": "https://forms.gle/jjdB93Qe2RLSiFvA8",
   "meme-making": "https://forms.gle/REPLACE_MEME_MAKING_FORM"
 };
 
