@@ -15,15 +15,15 @@ const particleConfig = [
 const heroPanels = [
   {
     title: "Event Categories",
-    items: ["AI/ML Challenges", "Product Sprints", "Creative Tech Arenas"]
+    items: ["Technical Events", "Non-Technical Events", "Pre-Events"]
   },
   {
-    title: "Important Dates",
-    items: ["April 1-2, 2026", "Registration closes March 28", "Finalists announced March 30"]
+    title: "Event Window",
+    items: ["April 1-2, 2026", "CSI College of Engineering", "On-campus symposium experience"]
   },
   {
-    title: "Featured Speakers",
-    items: ["Industry AI leads", "Research faculty", "Startup founders"]
+    title: "Symposium Highlights",
+    items: ["Competitive rounds", "Creative showcases", "On-ground challenges"]
   }
 ];
 
