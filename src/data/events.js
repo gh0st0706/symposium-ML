@@ -15,6 +15,7 @@ const registrationForms = {
   prompting: "https://forms.gle/REPLACE_PROMPTING_FORM",
   esports: "https://forms.gle/4YQT7QTjXZZPkNfT8",
   "talent-show": "https://forms.gle/r89kk3tt46nC4YT86",
+  "treasure-hunt": "https://forms.gle/uewPg9JWtNQtQZ7m8",
   "short-film": "https://forms.gle/REPLACE_SHORT_FILM_FORM",
   "meme-making": "https://forms.gle/REPLACE_MEME_MAKING_FORM"
 };
@@ -171,6 +172,30 @@ export const nonTechnicalEvents = [
       { type: "image", src: talentShowImage },
       { type: "label", label: "Battle" },
       { type: "label", label: "Perform" }
+    ]
+  },
+  {
+    slug: "treasure-hunt",
+    title: "Treasure Hunt",
+    category: "Non-Technical",
+    description: "Race through clue-based checkpoints, decoding tasks, and surprise challenges with speed, teamwork, and sharp observation.",
+    mode: "Team",
+    venue: "Department of AIML",
+    icon: "N3",
+    prize: "TBA",
+    registrationUrl: registrationForms["treasure-hunt"],
+    rules: [
+      "Teams must stay together throughout the event unless the coordinators announce a special round format.",
+      "Each clue must be solved in the intended order, and skipping checkpoints is not allowed.",
+      "Using unauthorized help, outside participants, or online answer sharing will lead to disqualification.",
+      "The team that completes the trail correctly in the shortest time will have the advantage.",
+      "Participants must respect campus rules, safety instructions, and all restricted areas during the hunt.",
+      "Coordinator decisions on clue validation, time records, and final rankings will be final."
+    ],
+    floaters: [
+      { type: "label", label: "Clue" },
+      { type: "label", label: "Track" },
+      { type: "label", label: "Find" }
     ]
   }
 ];
