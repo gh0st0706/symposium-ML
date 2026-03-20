@@ -4,7 +4,7 @@ const contacts = [
   { label: "Symposium", value: "TechLynx 2026" },
   { label: "Department", value: "AI & ML Department, CSI College of Engineering" },
   { label: "Email", value: "skynetics.aiml@gmail.com" },
-  { label: "Coordinator", value: "+91 98765 43210" },
+  { label: "Coordinator", value: "6385788779" },
   { label: "Support", value: "+91 91234 56789" }
 ];
 
