@@ -7,6 +7,7 @@ import laptopHandsImage from "../assets/prompting-laptop.jpeg";
 import promptWordsImage from "../assets/prompting-words.jpeg";
 import talentShowImage from "../assets/talent-show.jpeg";
 import shortFilmImage from "../assets/short-film.jpeg";
+import treasureImage from "../assets/Treasure.jpeg";
 
 const registrationForms = {
   ideathonx: "https://forms.gle/rqMhA4mUvf7mWLtZ7",
@@ -192,7 +193,9 @@ export const nonTechnicalEvents = [
       "Participants must respect campus rules, safety instructions, and all restricted areas during the hunt.",
       "Coordinator decisions on clue validation, time records, and final rankings will be final."
     ],
+    image: treasureImage,
     floaters: [
+      { type: "image", src: treasureImage },
       { type: "label", label: "Clue" },
       { type: "label", label: "Track" },
       { type: "label", label: "Find" }
