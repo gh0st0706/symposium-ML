@@ -15,15 +15,36 @@ function App() {
   useEffect(() => {
     if (!location.hash) return;
 
-    const targetId = location.hash.replace("#", "");
-    const target = document.getElementById(targetId);
-    if (!target) return;
+    let timeoutId;
+    let frameId;
+    let attempts = 0;
 
-    const header = document.querySelector("header");
-    const headerOffset = header ? header.getBoundingClientRect().height + 12 : 96;
-    const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+    const scrollToHashTarget = () => {
+      const targetId = decodeURIComponent(location.hash.replace("#", ""));
+      const target = document.getElementById(targetId);
 
-    window.scrollTo({ top: targetTop, behavior: "smooth" });
+      if (target) {
+        const header = document.querySelector("header");
+        const headerOffset = header ? header.getBoundingClientRect().height + 12 : 96;
+        const targetTop = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+        window.scrollTo({ top: targetTop, behavior: "smooth" });
+        return;
+      }
+
+      if (attempts >= 20) return;
+      attempts += 1;
+
+      timeoutId = window.setTimeout(() => {
+        frameId = window.requestAnimationFrame(scrollToHashTarget);
+      }, 40);
+    };
+
+    scrollToHashTarget();
+
+    return () => {
+      if (timeoutId) window.clearTimeout(timeoutId);
+      if (frameId) window.cancelAnimationFrame(frameId);
+    };
   }, [location.hash, location.pathname]);
 
   useEffect(() => {
