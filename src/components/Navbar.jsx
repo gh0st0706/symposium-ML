@@ -29,20 +29,17 @@ function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <nav className="section-wrap flex items-center justify-between py-3">
-        <Link to="/" className="group flex items-center gap-3">
+      <nav className="flex items-center justify-between py-3 pl-1.5 pr-4 md:pl-3 md:pr-6 lg:pr-8">
+        <Link to="/" className="group -ml-0.5 flex items-center gap-3 md:gap-4">
+          <img
+            src={skyneticsLogo}
+            alt="Skynetics logo"
+            className="h-10 w-auto max-w-[128px] object-contain opacity-60 mix-blend-screen saturate-[0.78] brightness-110 contrast-110 transition duration-300 group-hover:opacity-82 md:h-12 md:max-w-[152px]"
+          />
           <div className="font-display text-sm font-semibold uppercase tracking-[0.28em] text-cyan-300 md:text-base">
             <span>TechLynx</span>
             <span className="ml-2 normal-case text-[11px] tracking-[0.16em] text-cyan-200 md:text-xs">by skynetics</span>
           </div>
-          <span className="relative inline-flex items-center rounded-full border border-white/10 bg-white/[0.03] px-2.5 py-1.5 shadow-[0_8px_24px_rgba(2,8,23,0.24)] backdrop-blur-sm">
-            <span className="absolute inset-0 rounded-full bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.12),transparent_72%)] opacity-80" />
-            <img
-              src={skyneticsLogo}
-              alt="Skynetics logo"
-              className="relative h-5 w-auto max-w-[92px] object-contain opacity-70 mix-blend-screen saturate-[0.85] brightness-110 transition duration-300 group-hover:opacity-85"
-            />
-          </span>
         </Link>
         <div className="hidden items-center gap-8 md:flex">
           {links.map((item) => (
