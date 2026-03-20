@@ -7,7 +7,6 @@ const links = [
   { label: "About", hash: "#about" },
   { label: "Events", hash: "#events" },
   { label: "News", hash: "#news" },
-  { label: "Schedule", hash: "#schedule" },
   { label: "Contact", hash: "#contact" }
 ];
 

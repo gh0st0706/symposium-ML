@@ -174,6 +174,32 @@ export const nonTechnicalEvents = [
       { type: "label", label: "Battle" },
       { type: "label", label: "Perform" }
     ]
+  },
+  {
+    slug: "treasure-hunt",
+    title: "Treasure Hunt",
+    category: "Non-Technical",
+    description: "Race through clue-based checkpoints, decoding tasks, and surprise challenges with speed, teamwork, and sharp observation.",
+    mode: "Team",
+    venue: "Department of AIML",
+    icon: "N3",
+    prize: "TBA",
+    registrationUrl: registrationForms["treasure-hunt"],
+    rules: [
+      "Teams must stay together throughout the event unless the coordinators announce a special round format.",
+      "Each clue must be solved in the intended order, and skipping checkpoints is not allowed.",
+      "Using unauthorized help, outside participants, or online answer sharing will lead to disqualification.",
+      "The team that completes the trail correctly in the shortest time will have the advantage.",
+      "Participants must respect campus rules, safety instructions, and all restricted areas during the hunt.",
+      "Coordinator decisions on clue validation, time records, and final rankings will be final."
+    ],
+    image: treasureImage,
+    floaters: [
+      { type: "image", src: treasureImage },
+      { type: "label", label: "Clue" },
+      { type: "label", label: "Track" },
+      { type: "label", label: "Find" }
+    ]
   }
 ];
 
@@ -219,32 +245,6 @@ export const preEvents = [
       { type: "image", src: shortFilmImage },
       { type: "label", label: "Storyboard" },
       { type: "label", label: "Edit" }
-    ]
-  },
-  {
-    slug: "treasure-hunt",
-    title: "Treasure Hunt",
-    category: "Pre-Event",
-    description: "Race through clue-based checkpoints, decoding tasks, and surprise challenges with speed, teamwork, and sharp observation.",
-    mode: "Team",
-    venue: "Department of AIML",
-    icon: "P2",
-    prize: "TBA",
-    registrationUrl: registrationForms["treasure-hunt"],
-    rules: [
-      "Teams must stay together throughout the event unless the coordinators announce a special round format.",
-      "Each clue must be solved in the intended order, and skipping checkpoints is not allowed.",
-      "Using unauthorized help, outside participants, or online answer sharing will lead to disqualification.",
-      "The team that completes the trail correctly in the shortest time will have the advantage.",
-      "Participants must respect campus rules, safety instructions, and all restricted areas during the hunt.",
-      "Coordinator decisions on clue validation, time records, and final rankings will be final."
-    ],
-    image: treasureImage,
-    floaters: [
-      { type: "image", src: treasureImage },
-      { type: "label", label: "Clue" },
-      { type: "label", label: "Track" },
-      { type: "label", label: "Find" }
     ]
   }
 ];
